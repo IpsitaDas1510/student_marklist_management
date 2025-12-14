@@ -11,6 +11,9 @@ curl -X GET "https://potential-space-garbanzo-9vvgrgg65j6cj5v-8000.app.github.de
 # B. Get One Student
 curl -X GET "http://localhost:8000/api/students/1"
 
+# B. Get One Student Mark
+curl -X GET "http://localhost:8000/api/marks/student/1"
+
 # B. Get One Teacher
 curl -X GET "http://localhost:8000/api/teachers/1"
 
@@ -24,6 +27,7 @@ curl -X POST "http://localhost:8000/api/students" \
     "year": 2
   }'
 
+# C. Create Teacher
  curl -X POST "http://localhost:8000/api/teachers" \
   -H "Content-Type: application/json" \
   -d '{
@@ -32,6 +36,25 @@ curl -X POST "http://localhost:8000/api/students" \
     "subject": "Mathematics"
   }'
 
+
+# C. Create Mark 1st year
+curl -X POST "http://localhost:8000/api/marks" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "student_id": 1,
+    "year": "1st year",
+    "marks": 85
+  }'
+
+
+# C. Create Mark 1st year
+curl -X POST "http://localhost:8000/api/marks" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "student_id": 1,
+    "year": "2nd year",
+    "marks": 90
+  }'
 
 
 # D. Update Student
@@ -53,6 +76,15 @@ curl -X PUT "http://localhost:8000/api/teachers/1" \
     "subject": "Data Science"
   }'
 
+ # D. Update Marks
+  curl -X PUT "http://localhost:8000/api/marks/1" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "year": "1st year",
+    "marks": 88
+  }'
+
+
 # E. Delete Student
 curl -X DELETE "http://localhost:8000/api/students/1"
 
@@ -61,8 +93,12 @@ curl -X DELETE "http://localhost:8000/api/students/1"
 curl -X DELETE "http://localhost:8000/api/teachers/1"
 
 
+# E. Delete Marks
+curl -X DELETE "http://localhost:8000/api/marks/1"
+
+
+
 ##################### DB Observation Via SQLite Web
 - install https://github.com/coleifer/sqlite-web
 - pip install sqlite-web
-- sqlite_web students.db
-- sqlite_web teachers.db
+- sqlite_web master.db
