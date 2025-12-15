@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMMP</title>
+    <!-- CSS MAIN -->
+
+
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 6px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>STUDENT MARKLIST MANAGEMENT</h1>
+        <p>Manages Students,Teachers and Marks</p>
+    </header>
+    <div class="container">
+        <div class="cards">
+            <div class="card">
+                <a href="frontend/pages/student-detail.html">STUDENT DETAILS</a>
+            </div>
+            <div class="card">
+                <a href="frontend/pages/marks.html">MARKS</a>
+            </div>
+            <div class="card">
+                <a href="frontend/pages/students.html">STUDENTS</a>
+            </div>
+            <div class="card">
+               
+                <a href="frontend/pages/teachers.html">TEACHERS</a>
+            </div>
+        </div>
+    </div>   
+</body>
+</html>

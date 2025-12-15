@@ -47,7 +47,7 @@ curl -X POST "http://localhost:8000/api/marks" \
   }'
 
 
-# C. Create Mark 1st year
+# C. Create Mark 2nd year
 curl -X POST "http://localhost:8000/api/marks" \
   -H "Content-Type: application/json" \
   -d '{

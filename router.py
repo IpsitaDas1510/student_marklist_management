@@ -21,9 +21,9 @@ from controllers.teachers import (
 from controllers.marks import (
     add_mark,
     get_marks_by_student,
+    get_all_marks,
     update_mark,
     delete_mark,
-    get_all_marks,
 )
 
 from core.static import serve_static
@@ -69,29 +69,42 @@ class StudentRouter(BaseHTTPRequestHandler):
         if handle_ui_routes(self, path):
             return
 
-        # Students
+        # --------------------
+        # STUDENTS
+        # --------------------
         if path == "/api/students":
             return get_all_students(self)
 
         if path.startswith("/api/students/"):
-            return get_student(self, int(path.split("/")[-1]))
+            try:
+                return get_student(self, int(path.split("/")[-1]))
+            except ValueError:
+                return send_404(self)
 
-        # Teachers
+        # --------------------
+        # TEACHERS
+        # --------------------
         if path == "/api/teachers":
             return get_all_teachers(self)
 
         if path.startswith("/api/teachers/"):
-            return get_teacher(self, int(path.split("/")[-1]))
+            try:
+                return get_teacher(self, int(path.split("/")[-1]))
+            except ValueError:
+                return send_404(self)
 
-        # Marks
-        if path.startswith("/api/marks/student/"):
-            return get_marks_by_student(self, int(path.split("/")[-1]))
-        
+        # --------------------
+        # MARKS
+        # --------------------
         if path == "/api/marks":
             return get_all_marks(self)
+
         if path.startswith("/api/marks/student/"):
-         student_id = int(path.split("/")[-1])
-        return get_marks_by_student(self, student_id)
+            try:
+                student_id = int(path.split("/")[-1])
+                return get_marks_by_student(self, student_id)
+            except ValueError:
+                return send_404(self)
 
         return send_404(self)
 
@@ -130,7 +143,6 @@ class StudentRouter(BaseHTTPRequestHandler):
             return delete_mark(self, int(self.path.split("/")[-1]))
 
         return send_404(self)
-
 
     def log_message(self, format, *args):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
