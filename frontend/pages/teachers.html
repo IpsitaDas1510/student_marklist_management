@@ -1,29 +1,47 @@
 <div class="max-w-3xl mx-auto p-6">
 
   <div class="flex items-center justify-between mb-6">
-    <h1 class="text-3xl font-bold">Student Management System</h1>
-    <a href="/home" data-link class="text-sm text-blue-600 underline">Back to Home</a>
+    <h1 class="text-3xl font-bold">Teacher Management</h1>
+    <a href="/home" data-link class="text-sm text-blue-600 underline">← Back</a>
   </div>
 
-  <!-- Add / Edit Teacher Form -->
+  <!-- Form -->
   <div class="bg-white p-5 rounded shadow mb-8">
-    <h2 class="font-semibold mb-3 text-lg">Add New Teacher</h2>
-    <form id="teacherForm" class="space-y-3">
-      <input type="text" id="name" placeholder="Name" required class="w-full border rounded px-3 py-2">
-      <input type="email" id="email" placeholder="Email" required class="w-full border rounded px-3 py-2">
-      <input type="text" id="subject" placeholder="Subject" required class="w-full border rounded px-3 py-2">
+    <h2 class="font-semibold mb-3 text-lg">Add Teacher</h2>
 
-      <div class="flex space-x-2">
-        <button type="submit" id="submitBtn"
-          class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">
+    <form id="teacherForm" class="space-y-3">
+      <input id="name" placeholder="Name" required class="w-full border rounded px-3 py-2">
+      <input id="email" placeholder="Email" required class="w-full border rounded px-3 py-2">
+      <input id="subject" placeholder="Subject" required class="w-full border rounded px-3 py-2">
+
+      <div class="flex gap-2">
+        <button class="flex-1 bg-blue-500 text-white py-2 rounded">
           Add Teacher
         </button>
-
         <button type="button" id="cancelBtn"
-          class="flex-1 bg-gray-400 hover:bg-gray-500 text-white py-2 rounded hidden">
+          class="flex-1 bg-gray-400 text-white py-2 rounded hidden">
           Cancel
         </button>
       </div>
     </form>
   </div>
 
+  <!-- Table -->
+  <div class="bg-white p-5 rounded shadow">
+    <h2 class="font-semibold mb-4 text-lg">All Teachers</h2>
+
+    <table class="min-w-full border">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-3 py-2">ID</th>
+          <th class="px-3 py-2">Name</th>
+          <th class="px-3 py-2">Email</th>
+          <th class="px-3 py-2">Subject</th>
+          <th class="px-3 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="teachersTableBody"></tbody>
+    </table>
+  </div>
+
+</div>

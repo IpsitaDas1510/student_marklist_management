@@ -1,29 +1,108 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Marks</title>
-</head>
-<body>
-  <h2>View Student Marks</h2>
+<div class="max-w-3xl mx-auto p-6">
 
-  <input id="sid" placeholder="Student ID">
-  <button onclick="loadMarks()">Get Marks</button>
+  <!-- Page Heading -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-bold">Marks Management</h1>
+    <a href="/home" data-link class="text-sm text-blue-600 underline">
+      ← Back to Home
+    </a>
+  </div>
 
-  <ul id="result"></ul>
+  <!-- Add / Edit Marks Form -->
+  <div class="bg-white p-5 rounded shadow mb-8">
+    <h2 class="font-semibold mb-3 text-lg">Add Student Marks</h2>
 
-  <script>
-    function loadMarks() {
-      const id = document.getElementById("sid").value;
-      fetch(`/api/marks/student/${id}`)
-        .then(r => r.json())
-        .then(data => {
-          const ul = document.getElementById("result");
-          ul.innerHTML = "";
-          data.forEach(m =>
-            ul.innerHTML += `<li>${m.year} : ${m.marks}</li>`
-          );
-        });
-    }
-  </script>
-</body>
-</html>
+    <form id="markForm" class="space-y-3">
+      <input
+        type="number"
+        id="student_id"
+        placeholder="Student ID"
+        required
+        class="w-full border rounded px-3 py-2"
+      />
+
+      <input
+        type="text"
+        id="subject"
+        placeholder="Subject"
+        required
+        class="w-full border rounded px-3 py-2"
+      />
+
+      <input
+        type="text"
+        id="year"
+        placeholder="Year"
+        required
+        class="w-full border rounded px-3 py-2"
+      />
+
+      <input
+        type="number"
+        id="marks"
+        placeholder="Marks"
+        required
+        class="w-full border rounded px-3 py-2"
+      />
+
+      <div class="flex gap-2">
+        <button
+          type="submit"
+          id="submitBtn"
+          class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
+        >
+          Add Marks
+        </button>
+
+        <button
+          type="button"
+          id="cancelBtn"
+          class="flex-1 bg-gray-400 hover:bg-gray-500 text-white py-2 rounded hidden"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Marks Table -->
+  <div class="bg-white p-5 rounded shadow">
+    <h2 class="font-semibold mb-4 text-lg">All Marks</h2>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="text-center py-4 hidden">
+      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+    </div>
+
+    <!-- Table Container -->
+    <div id="marksTableContainer" class="overflow-x-auto">
+      <table class="min-w-full border border-gray-300">
+        <thead class="bg-gray-200 border-b">
+          <tr>
+            <th class="px-3 py-2 border">ID</th>
+            <th class="px-3 py-2 border">Student ID</th>
+            <th class="px-3 py-2 border">Subject</th>
+            <th class="px-3 py-2 border">Year</th>
+            <th class="px-3 py-2 border">Marks</th>
+            <th class="px-3 py-2 border">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="marksTableBody"></tbody>
+      </table>
+
+      <p
+        id="noMarks"
+        class="text-center text-gray-500 mt-3 hidden"
+      >
+        No marks found. Add one using the form above.
+      </p>
+    </div>
+  </div>
+
+  <!-- Alert container -->
+  <div
+    id="alertContainer"
+    class="fixed top-4 right-4 space-y-2 z-50"
+  ></div>
+</div>

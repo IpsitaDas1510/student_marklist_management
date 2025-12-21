@@ -1,3 +1,1 @@
-window.ENV = {
-  API_BASE_URL: "http://localhost:8000/api"
-};
+window.API_BASE_URL = "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.dev/api";

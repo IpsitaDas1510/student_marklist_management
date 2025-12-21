@@ -1,123 +1,74 @@
-import { 
-    apiGetAll,
-    updateTeacher, 
-    // apiGetOne, 
-    // apiCreate, 
-    // apiUpdate, 
-    // apiDelete 
+import {
+  getAllTeachers,
+  getTeacher,
+  createTeacher,
+  updateTeacher,
+  deleteTeacher
 } from "../services/teacherService.js";
 
-// import { showAlert } from "../components/Alert.js";
-import { resetForm, fillForm } from "../components/TeacherForm.js";
-import { renderStudentTable } from "../components/TeacherTable.js";
-
+import { renderTeacherTable } from "../components/TeacherTable.js";
 import { setState, getState } from "../state/store.js";
-import { $, createElement } from "../utils/dom.js";
 
-// Setup event listeners and load initial data
-// Initialize the main logic and set up all necessary event listeners
-export function initStudentController() {
-  // Start by fetching and displaying all student data immediately upon load
-  loadStudents();
+// initialize teacher page
+export function initTeacherController() {
+  loadTeachers();
 
-  // --- Handle Form Submissions ---
+  const teacherForm = document.getElementById("teacherForm");
+  const cancelBtn = document.getElementById("cancelBtn");
 
-  // Attach a listener to the 'submit' event of the student input form
-  $("studentForm").addEventListener("submit", async (e) => {
-    // Prevent the browser's default form submission behavior (page refresh)
+  teacherForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Collect data from the input fields using the custom '$' selector
     const data = {
-      name: $("name").value.trim(),   // Get name value, remove whitespace
-      email: $("email").value.trim(), // Get email value
-      course: $("course").value.trim(), // Get course value
-      year: $("year").value.trim()    // Get year value
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      subject: document.getElementById("subject").value.trim()
     };
 
-    // Check the application state to see if we are currently editing an existing record
     const { editingId } = getState();
 
-    // Use a ternary operator to decide which action to take:
-    editingId
-      ? await updateTeacher(editingId, data) // If editingId exists, update the student
-      : await createNewTeacher(data);        // Otherwise, create a new student
+    if (editingId) {
+      await updateTeacher(editingId, data);
+    } else {
+      await createTeacher(data);
+    }
+
+    setState({ editingId: null });
+    teacherForm.reset();
+    cancelBtn.classList.add("hidden");
+    loadTeachers();
   });
 
-  // --- Handle Cancel Button Click ---
-
-  // Attach a listener to the 'click' event of the cancel button
-  $("cancelBtn").addEventListener("click", () => {
-    // Clear the editing state (set the ID to null)
+  cancelBtn.addEventListener("click", () => {
     setState({ editingId: null });
-    // Clear all input fields in the form
-    resetForm();
+    teacherForm.reset();
+    cancelBtn.classList.add("hidden");
   });
 }
 
-
-// Fetch all student data from the API and update the user interface
-export async function loadStudents() {
-  // Get references to the loading spinner and the main data table elements
-  const spinner = $("loadingSpinner");
-  const table = $("teachersTableContainer");
-
-  // Show the spinner and hide the table to indicate a loading state
-  spinner.style.display = "block";
-  table.style.display = "none";
-
-  // Asynchronously fetch all student records from the backend API
-  const teachers = await apiGetAll();
-
-  // Store the retrieved student array in the application's global state
+// load all teachers
+async function loadTeachers() {
+  const teachers = await getAllTeachers();
   setState({ teachers });
-  // Render the fetched student data into the HTML table structure
   renderTeacherTable(teachers);
-
-  // Hide the spinner and show the table now that the data is loaded and displayed
-  spinner.style.display = "none";
-  table.style.display = "block";
 }
 
-
-// Create a new student
-export async function createNewTeacher(data) {
-  const res = await apiCreate(data);
-  if (res.ok) {
-    showAlert("Teacher added!");
-    resetForm();
-    loadTeachers();
-  }
-}
-
-// Load a student into the form for editing
+// edit teacher
 export async function editTeacher(id) {
-  const teacher = await apiGetOne(id);
-
+  const teacher = await getTeacher(id);
   setState({ editingId: id });
-  fillForm(teacher);
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.getElementById("name").value = teacher.name;
+  document.getElementById("email").value = teacher.email;
+  document.getElementById("subject").value = teacher.subject;
+
+  document.getElementById("cancelBtn").classList.remove("hidden");
 }
 
-// Update an existing student
-export async function updateTeacher(id, data) {
-  const res = await apiUpdate(id, data);
-  if (res.ok) {
-    showAlert("Updated!");
-    resetForm();
-    setState({ editingId: null });
-    loadTeachers();
-  }
-}
+// delete teacher
+export async function deleteTeacherAction(id) {
+  if (!confirm("Delete teacher?")) return;
 
-// Delete a teacher
-export async function deletetEACHERAction(id) {
-  if (!confirm("Delete this TEACHER?")) return;
-
-  const res = await apiDelete(id);
- 	if (res.ok) {
-    showAlert("Deleted!");
-    loadTeacher();
-  }
+  await deleteTeacher(id);
+  loadTeachers();
 }
