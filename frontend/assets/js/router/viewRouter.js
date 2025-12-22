@@ -1,5 +1,7 @@
 import { initStudentController } from "../controllers/studentController.js";
 import { initTeacherController } from "../controllers/teacherController.js";
+import { initMarkController } from "../controllers/markController.js";
+
 
 async function loadView(path) {
   const res = await fetch(path);
@@ -29,6 +31,11 @@ export async function router() {
   else if (path === "/teachers") {
     await loadView("/frontend/pages/teachers.html");
     initTeacherController();
+  }
+  //MARKS
+  else if (path === "/marks") {
+    await loadView("/frontend/pages/marks.html");
+    initMarkController();
   }
 
   // FALLBACK

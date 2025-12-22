@@ -8,67 +8,60 @@ import {
 
 import { renderTeacherTable } from "../components/TeacherTable.js";
 import { setState, getState } from "../state/store.js";
+import { $ } from "../utils/dom.js";
 
-// initialize teacher page
 export function initTeacherController() {
   loadTeachers();
 
-  const teacherForm = document.getElementById("teacherForm");
-  const cancelBtn = document.getElementById("cancelBtn");
-
-  teacherForm.addEventListener("submit", async (e) => {
+  $("teacherForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const data = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      subject: document.getElementById("subject").value.trim()
+      name: $("name").value.trim(),
+      email: $("email").value.trim(),
+      subject: $("subject").value.trim()
     };
 
     const { editingId } = getState();
 
     if (editingId) {
       await updateTeacher(editingId, data);
+      setState({ editingId: null });
     } else {
       await createTeacher(data);
     }
 
-    setState({ editingId: null });
-    teacherForm.reset();
-    cancelBtn.classList.add("hidden");
+    $("teacherForm").reset();
+    $("cancelBtn").classList.add("hidden");
     loadTeachers();
   });
 
-  cancelBtn.addEventListener("click", () => {
+  $("cancelBtn").onclick = () => {
     setState({ editingId: null });
-    teacherForm.reset();
-    cancelBtn.classList.add("hidden");
-  });
+    $("teacherForm").reset();
+    $("cancelBtn").classList.add("hidden");
+  };
 }
 
-// load all teachers
 async function loadTeachers() {
   const teachers = await getAllTeachers();
   setState({ teachers });
   renderTeacherTable(teachers);
 }
 
-// edit teacher
 export async function editTeacher(id) {
   const teacher = await getTeacher(id);
   setState({ editingId: id });
 
-  document.getElementById("name").value = teacher.name;
-  document.getElementById("email").value = teacher.email;
-  document.getElementById("subject").value = teacher.subject;
+  $("name").value = teacher.name;
+  $("email").value = teacher.email;
+  $("subject").value = teacher.subject;
 
-  document.getElementById("cancelBtn").classList.remove("hidden");
+  $("cancelBtn").classList.remove("hidden");
 }
 
-// delete teacher
 export async function deleteTeacherAction(id) {
   if (!confirm("Delete teacher?")) return;
-
   await deleteTeacher(id);
   loadTeachers();
 }

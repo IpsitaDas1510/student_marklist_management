@@ -14,7 +14,7 @@ export async function getAllTeachers() {
   return res.ok ? safeJson(res) : [];
 }
 
-// GET single teacher
+// GET one teacher
 export async function getTeacher(id) {
   const res = await fetch(`${API_URL}/${id}`);
   return res.ok ? safeJson(res) : null;

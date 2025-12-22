@@ -1,33 +1,46 @@
-const API_BASE = window.API_BASE_URL; // from env.js
+const API_URL = window.API_BASE_URL + "/students";
 
+async function safeJson(res) {
+  try {
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+// GET all students
 export async function getAllStudents() {
-  const res = await fetch(`${API_BASE}/students`);
-  return res.json();
+  const res = await fetch(API_URL);
+  return res.ok ? safeJson(res) : [];
 }
 
-export async function createStudent(student) {
-  const res = await fetch(`${API_BASE}/students`, {
+// GET one student
+export async function getStudent(id) {
+  const res = await fetch(`${API_URL}/${id}`);
+  return res.ok ? safeJson(res) : null;
+}
+
+// CREATE student
+export function createStudent(data) {
+  return fetch(API_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(student)
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
   });
-
-  return res.json();
 }
 
-export async function updateStudent(id, student) {
-  const res = await fetch(`${API_BASE_URL}/students/${id}`, {
+// UPDATE student
+export function updateStudent(id, data) {
+  return fetch(`${API_URL}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(student)
+    body: JSON.stringify(data)
   });
-  return res.json();
 }
 
-export async function deleteStudent(id) {
-  await fetch(`${API_BASE_URL}/students/${id}`, {
+// DELETE student
+export function deleteStudent(id) {
+  return fetch(`${API_URL}/${id}`, {
     method: "DELETE"
   });
 }
