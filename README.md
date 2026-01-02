@@ -103,6 +103,7 @@ The project demonstrates clean backend architecture, RESTful APIs, and a modular
 
 ## ⚙️ How to Run Locally
 
+
 1. Clone the repository
 ```bash
 git clone https://github.com/IpsitaDas1510/academic_management_portal.git
@@ -116,6 +117,11 @@ cd academic_management_portal
 python app.py
 
 4. Open the frontend files in your browser
+
+
+## 👩‍💻 Author
+Ipsita Das
+GitHub: IpsitaDas1510
 
 
 
