@@ -108,7 +108,7 @@ The project demonstrates clean backend architecture, RESTful APIs, and a modular
 
  git clone https://github.com/IpsitaDas1510/academic_management_portal.git
 
-3. Navigate to the project folder
+2. Navigate to the project folder
 
  cd academic_management_portal
 
