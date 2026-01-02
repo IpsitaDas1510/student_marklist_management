@@ -105,10 +105,9 @@ The project demonstrates clean backend architecture, RESTful APIs, and a modular
 
 
 1. Clone the repository
-```bash
 git clone https://github.com/IpsitaDas1510/academic_management_portal.git
 
-2. Navigate to the project folder
+3. Navigate to the project folder
 
 cd academic_management_portal
 
@@ -121,7 +120,10 @@ python app.py
 
 ## 👩‍💻 Author
 Ipsita Das
-GitHub: IpsitaDas1510
+GitHub: https://github.com/IpsitaDas1510/
+
+
+
 
 
 
