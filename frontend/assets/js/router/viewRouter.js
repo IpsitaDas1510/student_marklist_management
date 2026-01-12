@@ -104,6 +104,18 @@ export async function router() {
     return;
   }
 
+  // STUDENT-MARKS-JOIN (report card)
+  if (path === "/student-marks-join") {
+    await loadView("/frontend/pages/student-marks-join.html");
+    // dynamically import controller so it runs after HTML is injected
+    try {
+      await import("../controllers/studentMarksJoinController.js");
+    } catch (err) {
+      console.error("Failed to load studentMarksJoinController:", err);
+    }
+    return;
+  }
+
   // FALLBACK
   await loadView("/frontend/pages/404.html");
 }

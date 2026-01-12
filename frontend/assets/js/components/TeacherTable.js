@@ -11,11 +11,11 @@ export function renderTeacherTable(teachers) {
     row.className = "border-b";
 
     row.innerHTML = `
-      <td class="px-3 py-2">${t.id}</td>
-      <td class="px-3 py-2">${t.name}</td>
-      <td class="px-3 py-2">${t.email}</td>
-      <td class="px-3 py-2">${t.subject}</td>
-      <td class="px-3 py-2 flex gap-2">
+      <td class="px-3 py-2 border text-left">${t.id}</td>
+      <td class="px-3 py-2 border text-left">${t.name}</td>
+      <td class="px-3 py-2 border text-left">${t.email}</td>
+      <td class="px-3 py-2 border text-left">${t.subject}</td>
+      <td class="px-3 py-2 border text-left">
         <button class="text-blue-600" data-edit="${t.id}">Edit</button>
         <button class="text-red-600" data-delete="${t.id}">Delete</button>
       </td>

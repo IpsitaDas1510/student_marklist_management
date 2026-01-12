@@ -81,11 +81,6 @@ def get_connection():
 # Initialize / Reset Database
 # ------------------------------
 def init_database():
-    # Delete old database if exists
-    if os.path.exists(DB_FILE):
-        os.remove(DB_FILE)
-        print("✓ Old database removed")
-
     conn = get_connection()
 
     # ------------------------------

@@ -70,9 +70,11 @@
 from database.mark_queries import (
     db_create_mark,
     db_get_marks_by_student,
+    db_get_marks_by_student_with_student,
     db_update_mark,
     db_delete_mark,
     db_get_all_marks,
+    db_get_all_marks_with_students,
 )
 from database.queries import db_get_one
 
@@ -105,6 +107,10 @@ def service_get_marks_by_student(student_id):
     return db_get_marks_by_student(student_id)
 
 
+def service_get_marks_by_student_with_student(student_id):
+    return db_get_marks_by_student_with_student(student_id)
+
+
 def service_update_mark(mark_id, data):
     try:
         year = int(data["year"])
@@ -129,3 +135,14 @@ def service_delete_mark(mark_id):
 
 def service_get_all_marks():
     return db_get_all_marks()
+
+
+def service_get_all_marks_with_students():
+    return db_get_all_marks_with_students()
+
+
+
+
+
+
+

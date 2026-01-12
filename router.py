@@ -19,10 +19,12 @@ from controllers.teachers import (
     delete_teacher,
 )
 
-from controllers.marks import (
+from controllers.marks_handlers import (
     add_mark,
     get_marks_by_student,
+    get_marks_by_student_with_student,
     get_all_marks,
+    get_all_marks_with_students,
     update_mark,
     delete_mark,
 )
@@ -101,10 +103,20 @@ class StudentRouter(BaseHTTPRequestHandler):
         if path == "/api/marks":
             return get_all_marks(self)
 
+        if path == "/api/marks_with_students":
+            return get_all_marks_with_students(self)
+
         if path.startswith("/api/marks/student/"):
             try:
                 student_id = int(path.split("/")[-1])
                 return get_marks_by_student(self, student_id)
+            except ValueError:
+                return send_404(self)
+
+        if path.startswith("/api/marks/student_with/"):
+            try:
+                student_id = int(path.split("/")[-1])
+                return get_marks_by_student_with_student(self, student_id)
             except ValueError:
                 return send_404(self)
 
@@ -153,3 +165,9 @@ class StudentRouter(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(f"[{timestamp}] [Server] {format % args}")
+
+
+
+
+
+

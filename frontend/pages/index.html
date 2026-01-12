@@ -42,8 +42,8 @@
     <!-- Header -->
     <div id="header"></div>
 
-    <!-- SPA Root Container -->
-    <main id="app" class="max-w-2xl mx-auto p-6 flex-grow"></main>
+    <!-- SPA Root Container (pad top adjusted dynamically to header height) -->
+    <main id="app" class="w-full min-h-screen flex-grow"></main>
 
     <!-- Footer -->
     <div id="footer"></div>
@@ -53,9 +53,21 @@
         import { loadComponent } from "/frontend/assets/js/utils/loadComponent.js";
         import { initRouterEvents, router } from "/frontend/assets/js/router/viewRouter.js";
 
-        // Load header/footer templates
-        loadComponent("#header", "/frontend/assets/js/components/Header.html");
-        loadComponent("#footer", "/frontend/assets/js/components/Footer.html");
+        // Load header/footer templates and adjust SPA padding to header height
+        await loadComponent("#header", "/frontend/assets/js/components/Header.html");
+        await loadComponent("#footer", "/frontend/assets/js/components/Footer.html");
+
+        const adjustAppPadding = () => {
+            const headerEl = document.querySelector('#header header');
+            const app = document.getElementById('app');
+            if (!headerEl || !app) return;
+            const h = Math.ceil(headerEl.getBoundingClientRect().height);
+            app.style.paddingTop = `${h}px`;
+        };
+
+        // adjust now and on resize
+        adjustAppPadding();
+        window.addEventListener('resize', adjustAppPadding);
 
         initRouterEvents();
         router();

@@ -86,7 +86,10 @@ import { setState, getState } from "../state/store.js";
 import { $ } from "../utils/dom.js";
 
 export function initMarkController() {
-  loadMarks();
+  // If a year query param is present (e.g. /marks?year=2), pass it to loadMarks
+  const params = new URLSearchParams(window.location.search);
+  const yearParam = params.get("year");
+  loadMarks(yearParam ? Number(yearParam) : null);
 
   $("markForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -122,10 +125,13 @@ export function initMarkController() {
   };
 }
 
-async function loadMarks() {
+async function loadMarks(filterYear = null) {
   const marks = await getAllMarks();
-  setState({ marks });
-  renderMarkTable(marks);
+  const filtered = (filterYear === null)
+    ? marks
+    : marks.filter(m => String(m.year) === String(filterYear) || String(m.student_year) === String(filterYear));
+  setState({ marks: filtered });
+  renderMarkTable(filtered);
 }
 
 export function editMark(mark) {

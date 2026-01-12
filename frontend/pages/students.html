@@ -1,4 +1,4 @@
-<div class="max-w-3xl mx-auto p-6">
+<div class="w-full min-h-screen p-6">
 
   <!-- Page Heading -->
   <div class="flex items-center justify-between mb-6">
@@ -9,10 +9,11 @@
   </div>
 
   <!-- Add / Edit Student Form -->
-  <div class="bg-white p-5 rounded shadow mb-8">
-    <h2 class="font-semibold mb-3 text-lg">Add New Student</h2>
+  <div class="md:flex md:gap-6">
+    <div class="bg-white p-5 rounded shadow mb-8 md:mb-0 md:w-2/5">
+      <h2 class="font-semibold mb-3 text-lg">Add New Student</h2>
 
-    <form id="studentForm" class="space-y-3">
+      <form id="studentForm" class="space-y-3">
       <input
         type="text"
         id="name"
@@ -62,12 +63,12 @@
           Cancel
         </button>
       </div>
-    </form>
-  </div>
+      </form>
+    </div>
 
-  <!-- Students Table -->
-  <div class="bg-white p-5 rounded shadow">
-    <h2 class="font-semibold mb-4 text-lg">All Students</h2>
+    <!-- Students Table -->
+    <div class="bg-white p-5 rounded shadow md:w-3/5">
+      <h2 class="font-semibold mb-4 text-lg">All Students</h2>
 
     <!-- Loading Spinner -->
     <div id="loadingSpinner" class="text-center py-4 hidden">

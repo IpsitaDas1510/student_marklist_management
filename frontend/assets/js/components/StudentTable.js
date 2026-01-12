@@ -11,12 +11,12 @@ export function renderStudentTable(students) {
     row.className = "border-b";
 
     row.innerHTML = `
-      <td class="px-3 py-2">${s.id}</td>
-      <td class="px-3 py-2">${s.name}</td>
-      <td class="px-3 py-2">${s.email}</td>
-      <td class="px-3 py-2">${s.course}</td>
-      <td class="px-3 py-2">${s.year}</td>
-      <td class="px-3 py-2 flex gap-2">
+      <td class="px-3 py-2 border text-left">${s.id}</td>
+      <td class="px-3 py-2 border text-left">${s.name}</td>
+      <td class="px-3 py-2 border text-left">${s.email}</td>
+      <td class="px-3 py-2 border text-left">${s.course}</td>
+      <td class="px-3 py-2 border text-left">${s.year}</td>
+      <td class="px-3 py-2 border text-left">
         <button class="text-blue-600" data-edit="${s.id}">Edit</button>
         <button class="text-red-600" data-delete="${s.id}">Delete</button>
       </td>
