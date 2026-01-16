@@ -221,7 +221,7 @@ def db_get_all_marks():
 def db_get_all_marks_with_students():
     conn = get_connection()
     rows = conn.execute("""
-        SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, s.year as student_year,
+        SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, m.year as mark_year,
                t1.name as core1_teacher, t2.name as core2_teacher, t3.name as core3_teacher
         FROM marks m
         JOIN students s ON m.student_id = s.id
@@ -240,7 +240,7 @@ def db_get_all_marks_with_students():
 def db_get_marks_by_student_with_student(student_id):
     conn = get_connection()
     rows = conn.execute("""
-        SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, s.year as student_year,
+        SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, m.year as exam_year,
                t1.name as core1_teacher, t2.name as core2_teacher, t3.name as core3_teacher
         FROM marks m
         JOIN students s ON m.student_id = s.id
