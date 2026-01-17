@@ -16,8 +16,8 @@ export function renderTeacherTable(teachers) {
       <td class="px-3 py-2 border text-left">${t.email}</td>
       <td class="px-3 py-2 border text-left">${t.subject}</td>
       <td class="px-3 py-2 border text-left">
-        <button class="text-blue-600" data-edit="${t.id}">Edit</button>
-        <button class="text-red-600" data-delete="${t.id}">Delete</button>
+        <button class="text-green-300" data-edit="${t.id}">Edit</button>
+        <button class="text-yellow-300" data-delete="${t.id}">Delete</button>
       </td>
     `;
 

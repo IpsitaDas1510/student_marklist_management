@@ -17,8 +17,8 @@ export function renderStudentTable(students) {
       <td class="px-3 py-2 border text-left">${s.course}</td>
       <td class="px-3 py-2 border text-left">${s.year}</td>
       <td class="px-3 py-2 border text-left">
-        <button class="text-blue-600" data-edit="${s.id}">Edit</button>
-        <button class="text-red-600" data-delete="${s.id}">Delete</button>
+        <button class="text-green-300" data-edit="${s.id}">Edit</button>
+        <button class="text-yellow-300" data-delete="${s.id}">Delete</button>
       </td>
     `;
 

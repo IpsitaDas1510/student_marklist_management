@@ -55,8 +55,8 @@ export function renderMarkTable(marks) {
       <td class="border px-3 py-2">${mark.total}</td>
       <td class="border px-3 py-2">${mark.percentage}%</td>
       <td class="border px-3 py-2 space-x-2">
-        <button class="text-blue-600 edit-btn">Edit</button>
-        <button class="text-red-600 delete-btn">Delete</button>
+        <button class="text-green-300 edit-btn">Edit</button>
+        <button class="text-yellow-300 delete-btn">Delete</button>
       </td>
     `;
 

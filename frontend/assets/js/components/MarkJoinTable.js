@@ -19,7 +19,12 @@ export function renderMarkJoinTable(rows) {
   rows.forEach((r, i) => {
     const tr = document.createElement('tr');
     // zebra rows
-    tr.className = i % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+    // tr.className = i % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+    tr.className = 'hover:bg-white/1 transition'
+      // i % 2 === 0
+        ? 'bg-black/20 backdrop-blur-sm hover:bg-white/30 transition'
+        : 'bg-black/10 backdrop-blur-sm hover:bg-white/30 transition';
+
 
     const pct = typeof r.percentage !== 'undefined' ? Number(r.percentage) : null;
     let pctHtml = '';
@@ -41,26 +46,31 @@ export function renderMarkJoinTable(rows) {
     // percentage value used for badge (kept) — do not show subtitle under name
 
     tr.innerHTML = `
-      <td class="border px-3 py-2">${r.id}</td>
-      <td class="border px-3 py-2 font-medium">${r.student_name || r.student_id}</td>
-      <td class="border px-3 py-2 text-sm text-gray-600">${r.student_email || ''}</td>
-      <td class="border px-3 py-2">${r.student_course || ''}</td>
-      <td class="border px-3 py-2">${yearLabel}</td>
-      <td class="border px-3 py-2">
-        <div>${r.core1 ?? ''}</div>
-        <div class="text-xs text-gray-500">${r.core1_teacher ? 'T: ' + r.core1_teacher : ''}</div>
-      </td>
-      <td class="border px-3 py-2">
-        <div>${r.core2 ?? ''}</div>
-        <div class="text-xs text-gray-500">${r.core2_teacher ? 'T: ' + r.core2_teacher : ''}</div>
-      </td>
-      <td class="border px-3 py-2">
-        <div>${r.core3 ?? ''}</div>
-        <div class="text-xs text-gray-500">${r.core3_teacher ? 'T: ' + r.core3_teacher : ''}</div>
-      </td>
-      <td class="border px-3 py-2">${r.total ?? ''}</td>
-      <td class="border px-3 py-2">${pctHtml}</td>
-    `;
+  <td class="border border-white/20 px-3 py-2">${r.id}</td>
+  <td class="border border-white/20 px-3 py-2 font-medium">${r.student_name || r.student_id}</td>
+  <td class="border border-white/20 px-3 py-2 text-sm text-gray-300">${r.student_email || ''}</td>
+  <td class="border border-white/20 px-3 py-2">${r.student_course || ''}</td>
+  <td class="border border-white/20 px-3 py-2">${yearLabel}</td>
+
+  <td class="border-white/20 px-3 py-2">
+    <div>${r.core1 ?? ''}</div>
+    <div class="text-xs text-gray-400">${r.core1_teacher ? 'T: ' + r.core1_teacher : ''}</div>
+  </td>
+
+  <td class="border-white/20 px-3 py-2">
+    <div>${r.core2 ?? ''}</div>
+    <div class="text-xs text-gray-400">${r.core2_teacher ? 'T: ' + r.core2_teacher : ''}</div>
+  </td>
+
+  <td class="border-white/20 px-3 py-2">
+    <div>${r.core3 ?? ''}</div>
+    <div class="text-xs text-gray-400">${r.core3_teacher ? 'T: ' + r.core3_teacher : ''}</div>
+  </td>
+
+  <td class="border-white/20 px-3 py-2">${r.total ?? ''}</td>
+  <td class="border-white/20 px-3 py-2">${pctHtml}</td>
+`;
+
     body.appendChild(tr);
   });
 }
