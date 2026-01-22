@@ -1,106 +1,50 @@
 <div class="relative w-full min-h-screen p-6 bg-fixed bg-cover bg-center"
   style="background-image: url('https://img.freepik.com/premium-photo/black-educational-background-with-white-handdrawn-illustrations-black-educational-background_483187-2403.jpg');">
-
-  <!-- Dark Overlay -->
   <div class="absolute inset-0 bg-black/50"></div>
-
-  <!-- Content -->
   <div class="relative z-10">
 
-    <!-- Page Heading -->
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-3xl font-bold text-white">Marks Management</h1>
-      <a href="/home" data-link class="text-sm text-blue-600 underline">
-        ← Back to Home
-      </a>
+      <a href="/home" data-link class="text-sm text-blue-600 underline">← Back to Home</a>
     </div>
 
-    <!-- Add Marks Form + Table -->
     <div class="md:flex md:gap-6">
-
-      <!-- Form -->
       <div class="bg-white/8 backdrop-blur-sm p-5 rounded-md border border-white/10 mb-8 md:mb-0 md:w-2/5 text-white">
         <h2 class="font-semibold mb-4 text-lg text-white">Add Student Marks</h2>
-
         <form id="markForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-          <input
-            type="number"
-            id="student_id"
-            placeholder="Student ID"
-            required
-            class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2"
-          />
-
-          <select
-            id="year"
-            required
-            class="bg-white/6 border border-white/20 text-white rounded px-3 py-2">
+          <input type="number" id="student_id" placeholder="Student ID" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
+          <select id="year" required class="bg-white/6 border border-white/20 text-white rounded px-3 py-2">
             <option value="" class="text-black">Select Year</option>
             <option value="1" class="text-black">1st Year</option>
             <option value="2" class="text-black">2nd Year</option>
             <option value="3" class="text-black">3rd Year</option>
           </select>
-
-          <input
-            type="number"
-            id="core1"
-            placeholder="Core 1 Marks"
-            min="0"
-            max="100"
-            required
-            class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2"
-          />
-
-          <input
-            type="number"
-            id="core2"
-            placeholder="Core 2 Marks"
-            min="0"
-            max="100"
-            required
-            class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2"
-          />
-
-          <input
-            type="number"
-            id="core3"
-            placeholder="Core 3 Marks"
-            min="0"
-            max="100"
-            required
-            class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2"
-          />
-
+          <input type="number" id="core1" placeholder="Core 1 Marks" min="0" max="100" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
+          <input type="number" id="core2" placeholder="Core 2 Marks" min="0" max="100" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
+          <input type="number" id="core3" placeholder="Core 3 Marks" min="0" max="100" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
           <div class="col-span-full flex gap-3">
-            <button
-              type="submit"
-              id="submitBtn"
-              class="flex-1 bg-indigo-600/90 hover:bg-indigo-700 text-white py-2 rounded shadow-sm">
-              Add Marks
-            </button>
-
-            <button
-              type="button"
-              id="cancelBtn"
-              class="flex-1 bg-white/6 hover:bg-white/10 text-white py-2 rounded hidden">
-              Cancel
-            </button>
+            <button type="submit" id="submitBtn" class="flex-1 bg-indigo-600/90 hover:bg-indigo-700 text-white py-2 rounded shadow-sm">Add Marks</button>
+            <button type="button" id="cancelBtn" class="flex-1 bg-white/6 hover:bg-white/10 text-white py-2 rounded hidden">Cancel</button>
           </div>
         </form>
       </div>
 
-      <!-- Table -->
       <div class="bg-white/6 backdrop-blur-sm p-5 rounded-md border border-white/10 md:w-3/5 text-white">
         <h2 class="font-semibold mb-4 text-lg text-white">All Marks</h2>
 
-        <!-- Loading Spinner -->
-        <div id="loadingSpinner" class="text-center py-4 hidden">
-          <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+        <div class="flex flex-col md:flex-row gap-4 mb-6">
+          <input type="text" id="searchInput" placeholder="Search by Student ID..." 
+                 class="flex-1 bg-white/10 border border-white/20 text-white placeholder-white/50 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          
+          <select id="sortSelect" class="bg-gray-800 border border-white/20 text-white rounded px-3 py-2 outline-none">
+            <option value="id-asc">Sort by ID</option>
+            <option value="total-desc">Total (High to Low)</option>
+            <option value="perc-desc">Percentage (High to Low)</option>
+          </select>
         </div>
 
         <div id="marksTableContainer" class="overflow-x-auto">
-          <table class="min-w-full border border-white/10 text-white text-sm">
+          <table class="min-w-full border border-white/10 text-white text-sm text-center">
             <thead class="bg-white/5 border-b border-white/10">
               <tr>
                 <th class="px-3 py-2 border">ID</th>
@@ -114,28 +58,11 @@
                 <th class="px-3 py-2 border">Actions</th>
               </tr>
             </thead>
-
             <tbody id="marksTableBody"></tbody>
           </table>
-
-          <p id="noMarks" class="text-center text-gray-400 mt-3 hidden">
-            No marks found. Add one using the form above.
-          </p>
+          <p id="noMarks" class="text-center text-gray-400 mt-3 hidden">No marks found.</p>
         </div>
       </div>
     </div>
-
-    <!-- Alert container -->
-    <div
-      id="alertContainer"
-      class="fixed top-4 right-4 space-y-2 z-50">
-    </div>
-
   </div>
 </div>
-
-
-
-
-
-<!-- JOIN.HTML -->

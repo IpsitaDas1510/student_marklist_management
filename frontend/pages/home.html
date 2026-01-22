@@ -1,60 +1,12 @@
-<!-- <!-- <div class="max-w-4xl mx-auto p-6">
-
-  <h1 class="text-4xl font-bold mb-4 text-gray-800">
-    Welcome
-  </h1>
-
-  <p class="text-gray-400 mb-8 leading-relaxed">
-    This is the starting point of your Full-Stack learning journey.<br>
-    Choose what you want to explore:
-  </p>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-    <a href="/students" data-link
-      class="bg-blue-100 border border-blue-100 rounded-lg p-6
-             hover:shadow-md transition">
-      <h2 class="text-xl font-semibold text-blue-700 mb-2">
-        Students
-      </h2>
-      <p class="text-gray-600">Manage student records</p>
-    </a>
-
-    <a href="/teachers" data-link
-      class="bg-blue-100 border border-blue-100 rounded-lg p-6
-             hover:shadow-md transition">
-      <h2 class="text-xl font-semibold text-blue-700 mb-2">
-        Teachers
-      </h2>
-      <p class="text-gray-600">Manage teachers & subjects</p>
-    </a>
-
-    <a href="/marks" data-link
-      class="bg-blue-100 border border-blue-100 rounded-lg p-6
-             hover:shadow-md transition">
-      <h2 class="text-xl font-semibold text-blue-700 mb-2">
-        Marks
-      </h2>
-      <p class="text-gray-600">View & assign marks</p>
-    </a>
-
-  </div>
-</div> -->
-
-
-
 <!-- FULL BLEED HERO (STATIC BACKGROUND) -->
-<section
-  class="relative min-h-[calc(100vh-64px)] bg-cover bg-center bg-fixed text-white w-full"
-  style="
+<section class="relative min-h-[calc(100vh-64px)] bg-cover bg-center bg-fixed text-white w-full" style="
     background-image: url('frontend/pages/photo3.png');
     /* width: 100vw;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw; */
-  "
->
+  ">
   <!-- Overlay -->
   <!-- <div class="absolute inset-0 bg-black/60"></div> -->
 
@@ -79,31 +31,27 @@
 
 
       <!-- STUDENT MARKS JOIN -->
-  <div class="flex flex-col md:flex-row items-center gap-12">
-    <a
-      href="/student-marks-join"
-      class="w-full md:w-1/2 bg-green-500 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block"
-    >
-      <i class="fa-solid fa-users-line text-4xl mb-4"></i>
-      <h3 class="text-2xl font-semibold mb-2">Report Card</h3>
-      <p class="opacity-90">View student marks with teacher info</p>
-    </a>
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <a href="/student-marks-join"
+          class="w-full md:w-1/2 bg-white/20 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
+          <i class="fa-solid fa-users-line text-4xl mb-4"></i>
+          <h3 class="text-2xl font-semibold mb-2">Report Card</h3>
+          <p class="opacity-90">View student marks with teacher info</p>
+        </a>
 
-    <div class="w-full md:w-1/2 text-gray-200">
-      <h4 class="text-xl font-semibold mb-3">Student Performance Overview</h4>
-      <p class="leading-relaxed">
-        Check which student got what marks in each core subject along with the respective teacher for that subject.
-      </p>
-    </div>
-  </div>
+        <div class="w-full md:w-1/2 text-gray-200">
+          <h4 class="text-xl font-semibold mb-3">Student Performance Overview</h4>
+          <p class="leading-relaxed">
+            Check which student got what marks in each core subject along with the respective teacher for that subject.
+          </p>
+        </div>
+      </div>
 
 
       <!-- STUDENTS -->
       <div class="flex flex-col md:flex-row items-center gap-12">
-        <a
-          href="/students"
-          class="w-full md:w-1/2 bg-blue-500 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block"
-        >
+        <a href="/students"
+          class="w-full md:w-1/2 bg-white/20 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
           <i class="fa-solid fa-user-graduate text-4xl mb-4"></i>
           <h3 class="text-2xl font-semibold mb-2">Students</h3>
           <p class="opacity-90">Manage student records</p>
@@ -121,10 +69,8 @@
 
       <!-- TEACHERS -->
       <div class="flex flex-col md:flex-row items-center gap-12">
-        <a
-          href="/teachers"
-          class="w-full md:w-1/2 bg-purple-700 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block"
-        >
+        <a href="/teachers"
+          class="w-full md:w-1/2 bg-white/20 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
           <i class="fa-solid fa-chalkboard-teacher text-4xl mb-4"></i>
           <h3 class="text-2xl font-semibold mb-2">Teachers</h3>
           <p class="opacity-90">Manage teachers & subjects</p>
@@ -141,10 +87,8 @@
 
       <!-- MARKS -->
       <div class="flex flex-col md:flex-row items-center gap-12">
-        <a
-          href="/marks"
-          class="w-full md:w-1/2 bg-cyan-500 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block"
-        >
+        <a href="/marks"
+          class="w-full md:w-1/2 bg-white/20 text-white p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
           <i class="fa-solid fa-chart-line text-4xl mb-4"></i>
           <h3 class="text-2xl font-semibold mb-2">Marks</h3>
           <p class="opacity-90">View & assign marks</p>
@@ -158,6 +102,57 @@
         </div>
       </div>
 
+      <!-- CONTACT SECTION -->
+      <!-- <div class="relative py-20 bg-white/20 backdrop-blur-md"> -->
+      <div class="max-w-6xl mx-auto px-4">
+
+        <!-- Glass Card -->
+        <div class="bg-white/20 backdrop-blur-lg rounded-xl shadow-xl p-8 text-white text-center">
+
+          <h2 class="text-xl font-semibold mb-6">Contact Us</h2>
+
+          <!-- Contact Info -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-200 text-sm">
+
+            <!-- Phone -->
+            <div class="space-y-1">
+              <i class="fa-solid fa-phone text-lg"></i>
+              <p class="text-xs">Phone</p>
+              <p class="font-medium">+91 9861504204</p>
+            </div>
+
+            <!-- Email -->
+            <div class="space-y-1">
+              <i class="fa-solid fa-envelope text-lg"></i>
+              <p class="text-xs">Email</p>
+              <p class="font-medium">amp.portal@email.com</p>
+            </div>
+
+            <!-- Address -->
+            <div class="space-y-1">
+              <i class="fa-solid fa-location-dot text-lg"></i>
+              <p class="text-xs">Address</p>
+              <p class="font-medium">Odisha, India</p>
+            </div>
+
+          </div>
+
+          <!-- Social Icons -->
+          <div class="flex justify-center gap-4 mt-6 text-lg">
+            <a href="#" class="hover:text-blue-500"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-pink-500"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="hover:text-blue-400"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="hover:text-blue-600"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+
+        </div>
+      </div>
     </div>
+
   </div>
+
+  </div>
+
+  </div>
+  
 </section>

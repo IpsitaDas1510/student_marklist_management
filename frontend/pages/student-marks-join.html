@@ -1,20 +1,35 @@
+<script src="/frontend/assets/js/controllers/studentMarksJoinController.js" type="module"></script>
+
 <div class="relative w-full min-h-screen p-6 bg-fixed bg-cover bg-center"
   style="background-image: url('https://img.freepik.com/premium-photo/black-educational-background-with-white-handdrawn-illustrations-black-educational-background_483187-2403.jpg');">
   <div class="w-full min-h-screen p-6">
 
-    <!-- Page Heading -->
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-3xl font-bold text-white">Report Card</h1>
       <a href="/home" data-link class="text-sm text-blue-600 underline">← Back to Home</a>
     </div>
 
-    <!-- Report Table -->
-    <!-- <div class="bg-white p-5 rounded shadow"> -->
     <div class="bg-black/50 p-5 rounded-xl shadow-xl border border-white/10">
+      <h2 class="font-semibold mb-4 text-lg text-white">Student Marks Summary</h2>
 
-      <h2 class="font-semibold mb-4 text-lg text-white">
-        Student Marks (Joined with Student Info)
-      </h2>
+      <div class="flex flex-col md:flex-row gap-4 mb-6 items-end">
+        <div class="flex-1 w-full">
+          <input type="text" id="searchInput" placeholder="Search by name, email, or ID..." 
+                 class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        
+        <select id="sortSelect" class="bg-gray-800 border border-white/20 text-white rounded px-3 py-2 outline-none">
+          <option value="name-asc">Student Name (A-Z)</option>
+          <option value="total-desc">Marks: High to Low</option>
+          <option value="perc-desc">Percentage: High to Low</option>
+          <option value="id-asc">ID: Low to High</option>
+        </select>
+
+        <div class="flex gap-2">
+          <button id="exportCSV" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition font-medium">CSV</button>
+          <button id="exportPDF" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition font-medium">PDF</button>
+        </div>
+      </div>
 
       <div id="loading" class="text-center py-4 hidden">
         <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
@@ -22,38 +37,30 @@
 
       <div id="reportContainer" class="overflow-x-auto">
         <table class="min-w-full border border-white/20 text-white">
-          <thead class="bg-white/10 border-b border-white/20">
+          <thead class="bg-white/10 border-b border-white/20 text-sm">
             <tr>
-              <th class="px-3 py-2 font-semibold">ID</th>
-              <th class="px-3 py-2 font-semibold">Student</th>
-              <th class="px-3 py-2 font-semibold">Email</th>
-              <th class="px-3 py-2 font-semibold">Course</th>
-              <th class="px-3 py-2 font-semibold">Year</th>
-              <th class="px-3 py-2 font-semibold">Core 1</th>
-              <th class="px-3 py-2 font-semibold">Core 2</th>
-              <th class="px-3 py-2 font-semibold">Core 3</th>
-              <th class="px-3 py-2 font-semibold">Total</th>
-              <th class="px-3 py-2 font-semibold">%</th>
+              <th class="px-3 py-2 border border-white/20">ID</th>
+              <th class="px-3 py-2 border border-white/20 text-left">Student</th>
+              <th class="px-3 py-2 border border-white/20 text-left">Email</th>
+              <th class="px-3 py-2 border border-white/20">Course</th>
+              <th class="px-3 py-2 border border-white/20">Year</th>
+              <th class="px-3 py-2 border border-white/20">C1</th>
+              <th class="px-3 py-2 border border-white/20">C2</th>
+              <th class="px-3 py-2 border border-white/20">C3</th>
+              <th class="px-3 py-2 border border-white/20">Total</th>
+              <th class="px-3 py-2 border border-white/20">%</th>
             </tr>
           </thead>
-
           <tbody id="reportBody"></tbody>
         </table>
-
-        <p id="noRows" class="text-center text-gray-400 mt-3 hidden">
-          No records found.
-        </p>
+        <p id="noRows" class="text-center text-gray-400 mt-3 hidden">No records found.</p>
       </div>
     </div>
-
-
-    <p id="noRows" class="text-center text-gray-500 mt-3 hidden">No records found.</p>
   </div>
 </div>
 
-<!-- Alert container -->
-<div id="alertContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
 
-</div>
 
-<script src="/frontend/assets/js/controllers/studentMarksJoinController.js" type="module"></script>
+
+
+

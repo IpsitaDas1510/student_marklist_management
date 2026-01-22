@@ -6,12 +6,15 @@ import {
   deleteTeacher
 } from "../services/teacherService.js";
 
-import { renderTeacherTable } from "../components/TeacherTable.js";
+import { renderTeacherTable, initSearchSort } from "../components/TeacherTable.js";
 import { setState, getState } from "../state/store.js";
 import { $ } from "../utils/dom.js";
 
 export function initTeacherController() {
   loadTeachers();
+  
+  // Initialize search/sort listeners
+  initSearchSort();
 
   $("teacherForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -46,7 +49,8 @@ export function initTeacherController() {
 async function loadTeachers() {
   const teachers = await getAllTeachers();
   setState({ teachers });
-  renderTeacherTable(teachers);
+  // Pass true to indicate this is a fresh load from the service
+  renderTeacherTable(teachers, true);
 }
 
 export async function editTeacher(id) {
