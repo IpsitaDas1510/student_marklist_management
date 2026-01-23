@@ -1,25 +1,3 @@
-// import { $ } from "../utils/dom.js";
-
-// export function resetForm() {
-//   $("markForm").reset();
-//   $("submitBtn").textContent = "Add Marks";
-//   $("cancelBtn").classList.add("hidden");
-// }
-
-// export function fillForm(mark) {
-//   $("student_id").value = mark.student_id;
-//   $("year").value = mark.year;
-//   $("subject").value = mark.subject;
-//   $("marks").value = mark.marks;
-
-//   $("submitBtn").textContent = "Update Marks";
-//   $("cancelBtn").classList.remove("hidden");
-// }
-
-
-
-
-
 import { $ } from "../utils/dom.js";
 
 export function resetForm() {

@@ -9,7 +9,12 @@ export function renderMarkJoinTable(rows, isInitialLoad = false) {
   const container = document.getElementById('reportContainer');
   const noRows = document.getElementById('noRows');
 
-  if (!body) return;
+  // CRITICAL: Exit if the router hasn't injected the HTML yet
+  if (!body) {
+      console.warn("Table body not found in DOM yet.");
+      return;
+  }
+  
   body.innerHTML = '';
 
   if (!rows || !rows.length) {
@@ -34,7 +39,13 @@ export function renderMarkJoinTable(rows, isInitialLoad = false) {
 
     tr.innerHTML = `
       <td class="border border-white/20 px-3 py-2 text-center">${r.id}</td>
-      <td class="border border-white/20 px-3 py-2 font-medium">${r.student_name || 'N/A'}</td>
+      <td class="border border-white/20 px-3 py-2 font-medium">
+        <a href="/student-profile?id=${r.id}" 
+           data-link 
+           class="text-blue-400 hover:text-blue-300 hover:underline cursor-pointer transition-colors">
+           ${r.student_name || 'N/A'}
+        </a>
+      </td>
       <td class="border border-white/20 px-3 py-2 text-xs text-gray-400">${r.student_email || ''}</td>
       <td class="border border-white/20 px-3 py-2 text-center">${r.student_course || ''}</td>
       <td class="border border-white/20 px-3 py-2 text-center">${r.student_year ?? r.year ?? ''}</td>
@@ -51,6 +62,9 @@ export function renderMarkJoinTable(rows, isInitialLoad = false) {
 export function initReportSearchSort() {
   const searchInput = document.getElementById('searchInput');
   const sortSelect = document.getElementById('sortSelect');
+
+  // Guard against missing elements on page transition
+  if (!searchInput || !sortSelect) return;
 
   const applyFilters = () => {
     const term = searchInput.value.toLowerCase();
@@ -74,11 +88,10 @@ export function initReportSearchSort() {
   sortSelect.onchange = applyFilters;
 }
 
-// Export Logic
 export function downloadCSV() {
   const headers = "ID,Student,Email,Course,Year,Core1,Core2,Core3,Total,Percentage";
   const rows = filteredData.map(r => 
-    `${r.id},"${r.student_name}","${r.student_email}","${r.student_course}",${r.student_year ?? r.year},${r.core1},${r.core2},${r.core3},${r.total},${r.percentage}%`
+    `${r.id},"${r.student_name || 'N/A'}","${r.student_email || ''}","${r.student_course || ''}",${r.student_year ?? r.year ?? ''},${r.core1 ?? 0},${r.core2 ?? 0},${r.core3 ?? 0},${r.total ?? 0},${r.percentage || 0}%`
   );
   const blob = new Blob([[headers, ...rows].join("\n")], { type: 'text/csv' });
   const url = URL.createObjectURL(blob);
@@ -89,19 +102,16 @@ export function downloadCSV() {
 }
 
 export function downloadPDF() {
-  // 1. Try to get the constructor from window.jspdf or window.jsPDF
   const { jsPDF } = window.jspdf || {};
   const Constructor = jsPDF || window.jsPDF;
 
   if (!Constructor) {
-    alert("The PDF library is still loading or failed to load. Please refresh the page.");
+    alert("The PDF library is still loading.");
     return;
   }
 
-  // 2. Initialize doc (landscape orientation)
   const doc = new Constructor('landscape');
 
-  // 3. Prepare the data from filteredData
   if (!filteredData || filteredData.length === 0) {
     alert("No data available to export.");
     return;
@@ -119,34 +129,28 @@ export function downloadPDF() {
     (r.percentage || 0) + "%"
   ]);
 
-  // 4. Set Title
+  // Title in Black
+  doc.setTextColor(0, 0, 0);
   doc.setFontSize(18);
   doc.text("Student Progress Report Card", 14, 15);
-  doc.setFontSize(10);
-  doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 22);
-
-  // 5. Generate Table using autoTable
-  // autoTable is usually attached to the doc instance automatically
-  if (typeof doc.autoTable !== 'function') {
-    alert("The Table plugin (autotable) is not loaded correctly.");
-    return;
-  }
 
   doc.autoTable({
     head: [["ID", "Student", "Course", "Year", "C1", "C2", "C3", "Total", "%"]],
     body: tableRows,
     startY: 28,
     theme: 'grid',
-    headStyles: { fillColor: [31, 41, 55], textColor: [255, 255, 255] }, // Dark theme headers
-    alternateRowStyles: { fillColor: [245, 245, 245] }
+    // Header Colors: White Background with Black Text
+    headStyles: { 
+        fillColor: [255, 255, 255], 
+        textColor: [0, 0, 0],
+        lineColor: [0, 0, 0],
+        lineWidth: 0.1 
+    },
+    styles: {
+        textColor: [0, 0, 0],
+        lineColor: [0, 0, 0]
+    }
   });
 
-  // 6. Save
   doc.save(`Report_Card_${new Date().getTime()}.pdf`);
 }
-
-
-
-
-
-

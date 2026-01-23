@@ -16,6 +16,7 @@
         <script src="/frontend/assets/js/app.js" type="module"></script>
     </head>
 
+
     <!-- Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -37,19 +38,19 @@
     </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<!-- <body class="bg-gray-100 min-h-screen flex flex-col"> -->
+<body class="bg-slate-950 text-white min-h-screen flex flex-col">
 
     <!-- Environment variables -->
     <script src="/frontend/env.js"></script>
 
-    <!-- Header -->
-    <div id="header"></div>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col">
+    <div id="header" class="shrink-0"></div>
 
-    <!-- SPA Root Container (pad top adjusted dynamically to header height) -->
-    <main id="app" class="w-full min-h-screen flex-grow"></main>
+    <main id="app" class="w-full flex-grow"></main>
 
-    <!-- Footer -->
-    <div id="footer"></div>
+    <div id="footer" class="shrink-0 mt-auto"></div>
+</body>
 
     <!-- JS Modules -->
     <script type="module">
@@ -64,8 +65,8 @@
             const headerEl = document.querySelector('#header header');
             const app = document.getElementById('app');
             if (!headerEl || !app) return;
-            const h = Math.ceil(headerEl.getBoundingClientRect().height);
-            app.style.paddingTop = `${h}px`;
+            // const h = Math.ceil(headerEl.getBoundingClientRect().height);
+            // app.style.paddingTop = `${h}px`;
         };
 
         // adjust now and on resize
