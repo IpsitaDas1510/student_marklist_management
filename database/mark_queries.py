@@ -272,12 +272,9 @@ def db_get_all_marks_with_students():
 
             s.name   AS student_name,
             s.email  AS student_email,
-            s.course AS student_course,
+            s.course AS student_course
 
-            # (SELECT name FROM teachers WHERE subject = 'Core 1' LIMIT 1) AS core1_teacher,
-            # (SELECT name FROM teachers WHERE subject = 'Core 2' LIMIT 1) AS core2_teacher,
-            # (SELECT name FROM teachers WHERE subject = 'Core 3' LIMIT 1) AS core3_teacher
-
+        
         FROM marks m
         JOIN students s ON m.student_id = s.id
         ORDER BY m.student_id, m.year
@@ -305,11 +302,8 @@ def db_get_marks_by_student_with_student(student_id):
 
             s.name   AS student_name,
             s.email  AS student_email,
-            s.course AS student_course,
+            s.course AS student_course
 
-            # (SELECT name FROM teachers WHERE subject = 'Core 1' LIMIT 1) AS core1_teacher,
-            # (SELECT name FROM teachers WHERE subject = 'Core 2' LIMIT 1) AS core2_teacher,
-            # (SELECT name FROM teachers WHERE subject = 'Core 3' LIMIT 1) AS core3_teacher
 
         FROM marks m
         JOIN students s ON m.student_id = s.id
