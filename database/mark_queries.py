@@ -215,23 +215,77 @@ def db_get_all_marks():
     return [dict(r) for r in rows]
 
 
+# # -----------------------
+# # GET ALL MARKS JOINED WITH STUDENT INFO
+# # -----------------------
+# def db_get_all_marks_with_students():
+#     conn = get_connection()
+#     rows = conn.execute("""
+#         SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, m.year as mark_year,
+#                t1.name as core1_teacher, t2.name as core2_teacher, t3.name as core3_teacher
+#         FROM marks m
+#         JOIN students s ON m.student_id = s.id
+#         LEFT JOIN teachers t1 ON t1.subject = 'Core 1'
+#         LEFT JOIN teachers t2 ON t2.subject = 'Core 2'
+#         LEFT JOIN teachers t3 ON t3.subject = 'Core 3'
+#         ORDER BY m.student_id, m.year
+#     """).fetchall()
+#     conn.close()
+#     return [dict(r) for r in rows]
+
+
+# # -----------------------
+# # GET MARKS FOR A STUDENT WITH STUDENT INFO
+# # -----------------------
+# def db_get_marks_by_student_with_student(student_id):
+#     conn = get_connection()
+#     rows = conn.execute("""
+#         SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, m.year as exam_year,
+#                t1.name as core1_teacher, t2.name as core2_teacher, t3.name as core3_teacher
+#         FROM marks m
+#         JOIN students s ON m.student_id = s.id
+#         LEFT JOIN teachers t1 ON t1.subject = 'Core 1'
+#         LEFT JOIN teachers t2 ON t2.subject = 'Core 2'
+#         LEFT JOIN teachers t3 ON t3.subject = 'Core 3'
+#         WHERE m.student_id = ?
+#         ORDER BY m.id DESC
+#     """, (student_id,)).fetchall()
+#     conn.close()
+#     return [dict(r) for r in rows]
+
+
+
 # -----------------------
 # GET ALL MARKS JOINED WITH STUDENT INFO
 # -----------------------
 def db_get_all_marks_with_students():
     conn = get_connection()
     rows = conn.execute("""
-        SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, m.year as mark_year,
-               t1.name as core1_teacher, t2.name as core2_teacher, t3.name as core3_teacher
+        SELECT
+            m.id,
+            m.student_id,
+            m.year,
+            m.core1,
+            m.core2,
+            m.core3,
+            m.total,
+
+            s.name   AS student_name,
+            s.email  AS student_email,
+            s.course AS student_course,
+
+            # (SELECT name FROM teachers WHERE subject = 'Core 1' LIMIT 1) AS core1_teacher,
+            # (SELECT name FROM teachers WHERE subject = 'Core 2' LIMIT 1) AS core2_teacher,
+            # (SELECT name FROM teachers WHERE subject = 'Core 3' LIMIT 1) AS core3_teacher
+
         FROM marks m
         JOIN students s ON m.student_id = s.id
-        LEFT JOIN teachers t1 ON t1.subject = 'Core 1'
-        LEFT JOIN teachers t2 ON t2.subject = 'Core 2'
-        LEFT JOIN teachers t3 ON t3.subject = 'Core 3'
         ORDER BY m.student_id, m.year
     """).fetchall()
+
     conn.close()
     return [dict(r) for r in rows]
+
 
 
 # -----------------------
@@ -240,23 +294,28 @@ def db_get_all_marks_with_students():
 def db_get_marks_by_student_with_student(student_id):
     conn = get_connection()
     rows = conn.execute("""
-        SELECT m.*, s.name as student_name, s.email as student_email, s.course as student_course, m.year as exam_year,
-               t1.name as core1_teacher, t2.name as core2_teacher, t3.name as core3_teacher
+        SELECT
+            m.id,
+            m.student_id,
+            m.year,
+            m.core1,
+            m.core2,
+            m.core3,
+            m.total,
+
+            s.name   AS student_name,
+            s.email  AS student_email,
+            s.course AS student_course,
+
+            # (SELECT name FROM teachers WHERE subject = 'Core 1' LIMIT 1) AS core1_teacher,
+            # (SELECT name FROM teachers WHERE subject = 'Core 2' LIMIT 1) AS core2_teacher,
+            # (SELECT name FROM teachers WHERE subject = 'Core 3' LIMIT 1) AS core3_teacher
+
         FROM marks m
         JOIN students s ON m.student_id = s.id
-        LEFT JOIN teachers t1 ON t1.subject = 'Core 1'
-        LEFT JOIN teachers t2 ON t2.subject = 'Core 2'
-        LEFT JOIN teachers t3 ON t3.subject = 'Core 3'
         WHERE m.student_id = ?
-        ORDER BY m.id DESC
+        ORDER BY m.year
     """, (student_id,)).fetchall()
+
     conn.close()
     return [dict(r) for r in rows]
-
-
-
-
-
-
-
-
