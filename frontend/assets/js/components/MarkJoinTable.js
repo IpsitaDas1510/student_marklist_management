@@ -267,16 +267,27 @@ export function renderMarkJoinTable(rows, isInitialLoad = true) {
     const color =
       pct >= 75 ? 'bg-green-500' : pct >= 50 ? 'bg-yellow-400' : 'bg-red-500';
 
-    tr.innerHTML = `
-      <td class="border border-white/20 px-3 py-2 text-center">${r.id}</td>
+    // tr.innerHTML = `
+    //   <td class="border border-white/20 px-3 py-2 text-center">${r.id}</td>
 
-      <td class="border border-white/20 px-3 py-2 font-medium">
-        <a href="/student-profile?id=${r.student_id || r.id}"
-           data-link
-           class="text-blue-400 hover:text-blue-300 hover:underline transition">
-           ${r.student_name || 'N/A'}
-        </a>
-      </td>
+    //   <td class="border border-white/20 px-3 py-2 font-medium">
+    //     <a href="/student-profile?id=${r.student_id || r.id}"
+    //        data-link
+    //        class="text-blue-400 hover:text-blue-300 hover:underline transition">
+    //        ${r.student_name || 'N/A'}
+    //     </a>
+    //   </td>
+    tr.innerHTML = `
+  <td class="border border-white/20 px-3 py-2 text-center">${r.student_id}</td>
+
+  <td class="border border-white/20 px-3 py-2 font-medium">
+    <a href="/student-profile?id=${r.student_id}"
+       data-link
+       class="text-blue-400 hover:text-blue-300 hover:underline transition">
+       ${r.student_name || 'N/A'}
+    </a>
+  </td>
+
 
       <td class="border border-white/20 px-3 py-2 text-xs text-gray-400">
         ${r.student_email || ''}

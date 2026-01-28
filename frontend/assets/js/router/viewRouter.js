@@ -184,35 +184,35 @@ export async function router() {
       return;
     }
 
-    // // STUDENT PROFILE
-    // if (path === "/student-profile") {
-    //   await loadView("/frontend/pages/student-profile.html");
-    //   const { initStudentProfile } = await import(
-    //     "../controllers/studentProfileController.js"
-    //   );
-    //   await initStudentProfile();
-    //   return;
-    // }
-
-
-
-// STUDENT PROFILE (individual card)
-  if (path === "/student-profile") {
-    await loadView("/frontend/pages/student-profile.html");
-    try {
-      const module = await import("../controllers/studentProfileController.js");
-      
-      // Match the name we exported: initStudentProfile
-      if (module.initStudentProfile) {
-        await module.initStudentProfile();
-      } else {
-        console.error("initStudentProfile not found in module exports");
-      }
-    } catch (err) {
-      console.error("Failed to load studentProfileController:", err);
+    // STUDENT PROFILE
+    if (path === "/student-profile") {
+      await loadView("/frontend/pages/student-profile.html");
+      const { initStudentProfile } = await import(
+        "../controllers/studentProfileController.js"
+      );
+      await initStudentProfile();
+      return;
     }
-    return;
-  }
+
+
+
+// // STUDENT PROFILE (individual card)
+//   if (path === "/student-profile") {
+//     await loadView("/frontend/pages/student-profile.html");
+//     try {
+//       const module = await import("../controllers/studentProfileController.js");
+      
+//       // Match the name we exported: initStudentProfile
+//       if (module.initStudentProfile) {
+//         await module.initStudentProfile();
+//       } else {
+//         console.error("initStudentProfile not found in module exports");
+//       }
+//     } catch (err) {
+//       console.error("Failed to load studentProfileController:", err);
+//     }
+//     return;
+//   }
 
 
     // FALLBACK
