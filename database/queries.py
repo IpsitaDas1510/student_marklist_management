@@ -48,4 +48,3 @@ def db_delete(student_id):
     conn.commit()
     conn.close()
     return student
-

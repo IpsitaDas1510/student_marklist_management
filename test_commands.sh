@@ -3,10 +3,10 @@
 ##################### API Observation Via CURL
 
 # A. Get All Students
-curl -X GET "https://potential-space-garbanzo-9vvgrgg65j6cj5v-8000.app.github.dev/api/students"
+curl -X GET "https://supreme-capybara-97r696q5gppq27vq-8000.app.github.dev/api/students"
 
 # A. Get All Teachers
-curl -X GET "https://potential-space-garbanzo-9vvgrgg65j6cj5v-8000.app.github.dev/api/teachers"
+curl -X GET "https://supreme-capybara-97r696q5gppq27vq-8000.app.github.dev/api/teachers"
 
 # B. Get One Student
 curl -X GET "http://localhost:8000/api/students/1"
@@ -18,7 +18,7 @@ curl -X GET "http://localhost:8000/api/marks/student/1"
 curl -X GET "http://localhost:8000/api/teachers/1"
 
 # C. Create Student
-curl -X POST "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.dev/api/students" \
+curl -X POST "https://supreme-capybara-97r696q5gppq27vq-8000.app.github.dev/api/students" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Alice Johnson",
@@ -28,7 +28,7 @@ curl -X POST "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github
   }'
 
 # C. Create Teacher
- curl -X POST "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.dev/api/teachers" \
+ curl -X POST "https://supreme-capybara-97r696q5gppq27vq-8000.app.github.dev/api/teachers" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Naruto Uzumaki",
@@ -37,39 +37,7 @@ curl -X POST "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github
   }'
 
 
-# # C. Create Mark 1st year
-# curl -X POST http://localhost:8000/api/marks \
-# -H "Content-Type: application/json" \
-# -d '{
-#   "student_id": 1,
-#   "year": "2nd year",
-#   "subject": "Maths",
-#   "marks": 90
-# }'
-
-
-
-# # C. Create Mark 2nd year
-# curl -X POST http://localhost:8000/api/marks \
-# -H "Content-Type: application/json" \
-# -d '{
-#   "student_id": 1,
-#   "year": "2nd year",
-#   "subject": "Maths",
-#   "marks": 90
-# }'
-
-# # C. Create Mark 3rd year
-# curl -X POST http://localhost:8000/api/marks \
-# -H "Content-Type: application/json" \
-# -d '{
-#   "student_id": 1,
-#   "year": "3rd year",
-#   "subject": "Maths",
-#   "marks": 90
-# }'
-
-
+# # C. Create Marks
 
 # 1st Year
 curl -X POST http://localhost:8000/api/marks \
@@ -87,12 +55,8 @@ curl -X POST http://localhost:8000/api/marks \
 -d '{"student_id":1,"year":3,"core1":80,"core2":70,"core3":60}'
 
 
-
-
-
-
 # D. Update Student
-curl -X PUT "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.dev/api/students/1" \
+curl -X PUT "https://supreme-capybara-97r696q5gppq27vq-8000.app.github.dev/api/students/1" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Alice Updated",
@@ -102,7 +66,7 @@ curl -X PUT "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.
   }'
 
   # D. Update Teacher
-curl -X PUT "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.dev/api/teachers/1" \
+curl -X PUT "https://supreme-capybara-97r696q5gppq27vq-8000.app.github.dev/api/teachers/1" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Updated",
@@ -111,7 +75,7 @@ curl -X PUT "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.
   }'
 
  # D. Update Marks
-  curl -X PUT "https://cautious-space-fishstick-69qvgvr5qv7q2xr6q-8000.app.github.dev/api/marks/1" \
+  curl -X PUT "https://supreme-capybara-97r696q5gppq27vq-8000.app.github.dev/api/marks/1" \
   -H "Content-Type: application/json" \
   -d '{
     "year": "1st year",

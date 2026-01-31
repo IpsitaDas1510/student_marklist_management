@@ -1,6 +1,3 @@
-# Contains business logic (validation, processing, rules)
-# Does NOT know about HTTP — only works with Python data
-
 from database.teacher_queries import (
     db_get_all_teachers,
     db_get_one_teacher,
