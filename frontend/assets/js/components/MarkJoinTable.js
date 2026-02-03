@@ -46,7 +46,7 @@ export function renderMarkJoinTable(rows, isInitialLoad = true) {
         : ((total / 300) * 100).toFixed(2);
 
     const color =
-      pct >= 75 ? 'bg-green-500' : pct >= 50 ? 'bg-yellow-400' : 'bg-red-500';
+      pct >= 75 ? 'bg-green-900' : pct >= 50 ? 'bg-yellow-900' : 'bg-red-900';
 
     // Capture the year correctly to pass it in the link
     const currentYear = r.exam_year ?? r.student_year ?? r.year ?? '';

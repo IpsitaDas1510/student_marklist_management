@@ -1,158 +1,101 @@
-<!-- FULL BLEED HERO (STATIC BACKGROUND) -->
-<section class="relative min-h-[calc(100vh-64px)] bg-cover bg-center bg-fixed text-white w-full" style="
-    background-image: url('frontend/pages/pic.jpg');
-    /* width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw; */
-  ">
-  <!-- Overlay -->
-  <!-- <div class="absolute inset-0 bg-black/60"></div> -->
+<div class="font-['Poppins',_sans-serif] bg-[#0a0a0a] text-gray-200">
 
-  <!-- Hero Content -->
-  <div class="relative z-10 min-h-[calc(100vh-64px)] flex items-center justify-center px-6">
-    <div class="max-w-4xl text-center bg-white/10 backdrop-blur-lg text-black p-10 rounded-xl">
-      <h1 class="text-4xl md:text-7xl text-blue-100 font-family: 'sans-serif';">
-        Academic Management <br />
-        <span class="text-blue-100">Portal</span>
+  <div
+    class="bg-black border-b border-gray-800 text-gray-400 py-2 px-6 flex justify-between items-center text-[11px] md:text-sm">
+    <div class="flex items-center gap-6">
+      <span class="flex items-center gap-2">
+        <i class="fa-solid fa-phone text-[#E31E24]"></i> (+91) 9861504204
+      </span>
+    </div>
+    <div class="flex gap-4">
+      <i class="fa-brands fa-facebook-f cursor-pointer hover:text-[#E31E24] transition"></i>
+      <i class="fa-brands fa-twitter cursor-pointer hover:text-[#E31E24] transition"></i>
+      <i class="fa-brands fa-instagram cursor-pointer hover:text-[#E31E24] transition"></i>
+    </div>
+  </div>
+
+
+  <section
+    class="relative min-h-[550px] w-full flex items-center justify-center text-center text-white px-6 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="frontend/pages/pic.jpg" class="w-full h-full object-cover opacity-100" alt="Background">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-[#0a0a0a]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl w-full">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+        Academic <br> Management Portal
       </h1>
-
-      <p class="mt-4 text-white font-family: 'sans-serif'; text-lg">
-        A powerful Academic Management System to manage students,
-        teachers and marks — all in one place.
+      <p class="text-lg opacity-70 font-light max-w-2xl mx-auto mb-12 text-gray-300">
+        Official Academic Portal for result processing and record management.
       </p>
-    </div>
-  </div>
 
-  <!-- SCROLL CONTENT -->
-<div class="relative z-20 pt-16 pb-24">
-    <div class="max-w-6xl mx-auto px-6 space-y-24">
-
-
-      <!-- STUDENT MARKS JOIN -->
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <a href="/student-marks-join"
-          class="w-full md:w-1/2 bg-white/20 backdrop-blur-lg text-blue-100 p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
-          <i class="fa-solid fa-users-line text-4xl mb-4"></i>
-          <h3 class="text-2xl font-semibold mb-2">Report Card</h3>
-          <p class="opacity-90">View student marks with teacher info</p>
-        </a>
-
-        <div class="w-full md:w-1/2 text-blue-100 bg-white/20 backdrop-blur-lg rounded-xl p-8">
-          <h4 class="text-xl font-semibold mb-3">Student Performance Overview</h4>
-          <p class="leading-relaxed">
-            Check which student got what marks in each core subject along with the respective teacher for that subject.
-          </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <div class="bg-black/40 backdrop-blur-md border border-gray-800 p-6 rounded-xl">
+          <i class="fa-solid fa-phone text-2xl text-[#E31E24] mb-3"></i>
+          <h3 class="text-xs uppercase tracking-widest text-gray-500 mb-1">Call Us</h3>
+          <p class="text-lg font-semibold text-white">(+91) 9861504204</p>
         </div>
-      </div>
-
-
-      <!-- STUDENTS -->
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <a href="/students"
-          class="w-full md:w-1/2 bg-white/20 backdrop-blur-lg text-blue-100 p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
-          <i class="fa-solid fa-user-graduate text-4xl mb-4"></i>
-          <h3 class="text-2xl font-semibold mb-2">Students</h3>
-          <p class="opacity-90">Manage student records</p>
-        </a>
-
-        <div class="w-full md:w-1/2 text-blue-100 bg-white/20 backdrop-blur-lg rounded-xl p-8">
-          <h4 class="text-xl font-semibold mb-3">Student Management</h4>
-          <p class="leading-relaxed">
-            Easily add, update, view, and delete student records.
-            Keep all academic information organized and accessible
-            from a single dashboard.
-          </p>
+        <div class="bg-black/40 backdrop-blur-md border border-gray-800 p-6 rounded-xl">
+          <i class="fa-solid fa-location-dot text-2xl text-[#E31E24] mb-3"></i>
+          <h3 class="text-xs uppercase tracking-widest text-gray-500 mb-1">Our Location</h3>
+          <p class="text-lg font-semibold text-white">Brahmapur, Odisha</p>
         </div>
-      </div>
-
-      <!-- TEACHERS -->
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <a href="/teachers"
-          class="w-full md:w-1/2 bg-white/20 backdrop-blur-lg text-blue-100 p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
-          <i class="fa-solid fa-chalkboard-teacher text-4xl mb-4"></i>
-          <h3 class="text-2xl font-semibold mb-2">Teachers</h3>
-          <p class="opacity-90">Manage teachers & subjects</p>
-        </a>
-
-        <div class="w-full md:w-1/2 text-blue-100 bg-white/20 backdrop-blur-lg rounded-xl p-8">
-          <h4 class="text-xl font-semibold mb-3">Teacher Management</h4>
-          <p class="leading-relaxed">
-            Maintain teacher profiles, assign subjects, and manage
-            responsibilities efficiently.
-          </p>
-        </div>
-      </div>
-
-      <!-- MARKS -->
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <a href="/marks"
-          class="w-full md:w-1/2 bg-white/20 backdrop-blur-lg text-blue-100 p-10 rounded-xl shadow-2xl hover:scale-105 transition-transform block">
-          <i class="fa-solid fa-chart-line text-4xl mb-4"></i>
-          <h3 class="text-2xl font-semibold mb-2">Marks</h3>
-          <p class="opacity-90">View & assign marks</p>
-        </a>
-
-        <div class="w-full md:w-1/2 text-blue-100 bg-white/20 backdrop-blur-lg rounded-xl p-8">
-          <h4 class="text-xl font-semibold mb-3">Marks & Performance</h4>
-          <p class="leading-relaxed">
-            Assign marks, track performance, and analyze academic progress.
-          </p>
-        </div>
-      </div>
-
-      <!-- CONTACT SECTION -->
-      <!-- <div class="relative py-20 bg-white/20 backdrop-blur-md"> -->
-      <div class="max-w-6xl mx-auto px-4">
-
-        <!-- Glass Card -->
-        <div class="bg-white/20 backdrop-blur-lg rounded-xl shadow-xl p-8 text-blue-100 text-center">
-
-          <h2 class="text-xl font-semibold mb-6">Contact Us</h2>
-
-          <!-- Contact Info -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-blue-100 text-sm">
-
-            <!-- Phone -->
-            <div class="space-y-1">
-              <i class="fa-solid fa-phone text-lg"></i>
-              <p class="text-xs">Phone</p>
-              <p class="font-medium">+91 9861504204</p>
-            </div>
-
-            <!-- Email -->
-            <div class="space-y-1">
-              <i class="fa-solid fa-envelope text-lg"></i>
-              <p class="text-xs">Email</p>
-              <p class="font-medium">amp.portal@email.com</p>
-            </div>
-
-            <!-- Address -->
-            <div class="space-y-1">
-              <i class="fa-solid fa-location-dot text-lg"></i>
-              <p class="text-xs">Address</p>
-              <p class="font-medium">Odisha, India</p>
-            </div>
-
-          </div>
-
-          <!-- Social Icons -->
-          <div class="flex justify-center gap-4 mt-6 text-lg">
-            <a href="#" class="hover:text-blue-500"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="hover:text-pink-500"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="hover:text-blue-400"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="hover:text-blue-600"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-
+        <div class="bg-black/40 backdrop-blur-md border border-gray-800 p-6 rounded-xl">
+          <i class="fa-solid fa-envelope text-2xl text-[#E31E24] mb-3"></i>
+          <h3 class="text-xs uppercase tracking-widest text-gray-500 mb-1">Email Support</h3>
+          <p class="text-lg font-semibold text-white">amp.portal@email.com</p>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
+  <section class="py-24 bg-[#0a0a0a]">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
-  </div>
+      <div>
+        <h2 class="text-3xl font-bold text-white mb-2 uppercase tracking-tight">Notice Board</h2>
+        <div class="w-16 h-1 bg-[#E31E24] mb-8"></div>
+        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+          Stay updated with the latest academic announcements. This portal allows administrators to manage marks and
+          students to verify their performance instantly.
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 text-gray-300">
+            <i class="fa-solid fa-circle-check text-[#E31E24]"></i>
+            <span>Secure data storage</span>
+          </div>
+          <div class="flex items-center gap-4 text-gray-300">
+            <i class="fa-solid fa-circle-check text-[#E31E24]"></i>
+            <span>Automated report card generation</span>
+          </div>
+        </div>
+      </div>
 
-  </div>
-  
-</section>
+      <div class="grid grid-cols-2 gap-4">
+        <a href="/students" data-link
+          class="bg-[#111] border border-gray-800 p-8 rounded-xl text-center hover:border-[#E31E24] hover:bg-[#1a1a1a] transition-all group">
+          <i class="fa-solid fa-user-graduate text-3xl mb-3 text-[#E31E24]"></i>
+          <h3 class="font-bold uppercase text-xs tracking-widest text-gray-300 group-hover:text-white">Students</h3>
+        </a>
+        <a href="/teachers" data-link
+          class="bg-[#111] border border-gray-800 p-8 rounded-xl text-center hover:border-[#E31E24] hover:bg-[#1a1a1a] transition-all group">
+          <i class="fa-solid fa-chalkboard-teacher text-3xl mb-3 text-[#E31E24]"></i>
+          <h3 class="font-bold uppercase text-xs tracking-widest text-gray-300 group-hover:text-white">Teachers</h3>
+        </a>
+        <a href="/marks" data-link
+          class="bg-[#111] border border-gray-800 p-8 rounded-xl text-center hover:border-[#E31E24] hover:bg-[#1a1a1a] transition-all group">
+          <i class="fa-solid fa-chart-line text-3xl mb-3 text-[#E31E24]"></i>
+          <h3 class="font-bold uppercase text-xs tracking-widest text-gray-300 group-hover:text-white">Marks</h3>
+        </a>
+        <a href="/student-marks-join" data-link
+          class="bg-[#111] border border-gray-800 p-8 rounded-xl text-center hover:border-[#E31E24] hover:bg-[#1a1a1a] transition-all group">
+          <i class="fa-solid fa-file-invoice text-3xl mb-3 text-[#E31E24]"></i>
+          <h3 class="font-bold uppercase text-xs tracking-widest text-gray-300 group-hover:text-white">Report Card</h3>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</div>

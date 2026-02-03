@@ -1,66 +1,110 @@
-<div class="relative w-full min-h-screen p-6 bg-fixed bg-cover bg-center"
-  style="background-image: url('https://wallpapers.com/images/hd/sections-of-books-dark-academia-desktop-s6999l4lovk7cts6.jpg');">
-  <div class="absolute inset-0 bg-black/50"></div>
-  <div class="relative z-10">
+<div class="relative w-full min-h-screen p-6 bg-[#0a0a0a] font-['Poppins',_sans-serif] text-white">
+  
+  <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#FF1744]/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <div class="flex items-center justify-between mb-6 mt-16">
-      <h1 class="text-3xl font-bold text-white">Marks Management System</h1>
-      <a href="/home" data-link class="text-sm text-blue-600 underline">← Back to Home</a>
+  <div class="relative z-10 max-w-7xl mx-auto">
+
+    <div class="flex items-center justify-between mb-10 mt-8 border-b border-white/10 pb-6">
+      <h1 class="text-3xl font-black text-white tracking-tighter uppercase">
+        Marks Management <span class="text-[#FF1744]">System</span>
+      </h1>
+      <a href="/home" data-link class="text-[11px] font-bold text-white hover:text-[#FF1744] transition-colors no-underline uppercase tracking-[0.2em]">
+        ← Back to Home
+      </a>
     </div>
 
-    <div class="md:flex md:gap-6">
-      <div class="bg-white/8 backdrop-blur-sm p-5 rounded-md border border-white/10 mb-8 md:mb-0 md:w-2/5 text-white">
-        <h2 class="font-semibold mb-4 text-lg text-white">Add Student Marks</h2>
+    <div class="lg:flex lg:gap-8">
+      
+      <div class="bg-[#111111] p-8 rounded-xl border border-white/10 mb-8 lg:mb-0 lg:w-2/5 shadow-2xl">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-[3px] h-4 bg-[#FF1744]"></div>
+          <h2 class="text-xs font-black text-white uppercase tracking-[0.2em]">Add Student Marks</h2>
+        </div>
+        
         <form id="markForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input type="number" id="student_id" placeholder="Student ID" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
-          <select id="year" required class="bg-white/6 border border-white/20 text-white rounded px-3 py-2">
-            <option value="" class="text-black">Select Year</option>
-            <option value="1" class="text-black">1st Year</option>
-            <option value="2" class="text-black">2nd Year</option>
-            <option value="3" class="text-black">3rd Year</option>
-          </select>
-          <input type="number" id="core1" placeholder="Core 1 Marks" min="0" max="100" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
-          <input type="number" id="core2" placeholder="Core 2 Marks" min="0" max="100" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
-          <input type="number" id="core3" placeholder="Core 3 Marks" min="0" max="100" required class="bg-white/6 border border-white/20 placeholder-white/70 text-white rounded px-3 py-2" />
-          <div class="col-span-full flex gap-3">
-            <button type="submit" id="submitBtn" class="flex-1 bg-indigo-600/90 hover:bg-indigo-700 text-white py-2 rounded shadow-sm">Add Marks</button>
-            <button type="button" id="cancelBtn" class="flex-1 bg-white/6 hover:bg-white/10 text-white py-2 rounded hidden">Cancel</button>
+          <div class="col-span-1">
+            <label class="text-[10px] font-bold text-white/40 uppercase block mb-2 ml-1 tracking-widest">Student ID</label>
+            <input type="number" id="student_id" placeholder="ID" required 
+                   class="w-full bg-black border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#FF1744] transition-all placeholder:text-white/10" />
+          </div>
+
+          <div class="col-span-1">
+            <label class="text-[10px] font-bold text-white/40 uppercase block mb-2 ml-1 tracking-widest">Year</label>
+            <select id="year" required class="w-full bg-black border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#FF1744] transition-all appearance-none">
+              <option value="" class="bg-[#111111]">Select</option>
+              <option value="1" class="bg-[#111111]">1st Year</option>
+              <option value="2" class="bg-[#111111]">2nd Year</option>
+              <option value="3" class="bg-[#111111]">3rd Year</option>
+            </select>
+          </div>
+
+<div class="col-span-full grid grid-cols-3 gap-3">
+    <div class="pl-2"> <label class="text-[9px] font-bold text-white/40 uppercase block mb-1 tracking-tighter pl-1">Core 1</label>
+        <input type="number" id="core1" placeholder="0-100" min="0" max="100" required 
+               class="w-full bg-black border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#FF1744] text-sm" />
+    </div>
+    
+    <div class="pl-2">
+        <label class="text-[9px] font-bold text-white/40 uppercase block mb-1 tracking-tighter pl-1">Core 2</label>
+        <input type="number" id="core2" placeholder="0-100" min="0" max="100" required 
+               class="w-full bg-black border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#FF1744] text-sm" />
+    </div>
+    
+    <div class="pl-2">
+        <label class="text-[9px] font-bold text-white/40 uppercase block mb-1 tracking-tighter pl-1">Core 3</label>
+        <input type="number" id="core3" placeholder="0-100" min="0" max="100" required 
+               class="w-full bg-black border border-white/10 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-[#FF1744] text-sm" />
+    </div>
+</div>
+          
+          <div class="col-span-full flex gap-3 pt-4">
+            <button type="submit" id="submitBtn" 
+                    class="flex-1 bg-[#FF1744] hover:bg-[#d50000] text-white font-black py-4 rounded-lg shadow-lg shadow-[#FF1744]/20 transition-all uppercase tracking-widest text-[11px]">
+              Add Marks
+            </button>
+            <button type="button" id="cancelBtn" 
+                    class="flex-1 bg-white/5 hover:bg-white/10 text-white font-black py-4 rounded-lg transition-all uppercase tracking-widest text-[11px] hidden">
+              Cancel
+            </button>
           </div>
         </form>
       </div>
 
-      <div class="bg-white/6 backdrop-blur-sm p-5 rounded-md border border-white/10 md:w-3/5 text-white">
-        <h2 class="font-semibold mb-4 text-lg text-white">All Marks</h2>
-
-        <div class="flex flex-col md:flex-row gap-4 mb-6">
-          <input type="text" id="searchInput" placeholder="Search by Student ID..." 
-                 class="flex-1 bg-white/10 border border-white/20 text-white placeholder-white/50 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          
-          <select id="sortSelect" class="bg-gray-800 border border-white/20 text-white rounded px-3 py-2 outline-none">
-            <option value="id-asc">Sort by ID</option>
-            <option value="total-desc">Total (High to Low)</option>
-            <option value="perc-desc">Percentage (High to Low)</option>
-          </select>
+      <div class="bg-[#111111] p-8 rounded-xl border border-white/10 lg:w-3/5 shadow-2xl">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <h2 class="text-xs font-black text-white uppercase tracking-[0.2em]">Academic Performance</h2>
+            
+            <div class="flex gap-3 w-full md:w-auto">
+                <input type="text" id="searchInput" placeholder="Search ID..." 
+                       class="w-full md:w-40 bg-black border border-white/10 rounded-full py-2 px-5 text-xs focus:border-[#FF1744] outline-none transition-all text-white placeholder:text-white/20">
+                
+                <select id="sortSelect" class="bg-black border border-white/10 text-white text-[10px] font-bold uppercase rounded-full px-4 py-2 outline-none focus:border-[#FF1744]">
+                    <option value="id-asc">Sort</option>
+                    <option value="total-desc">High Total</option>
+                    <option value="perc-desc">High %</option>
+                </select>
+            </div>
         </div>
 
         <div id="marksTableContainer" class="overflow-x-auto">
-          <table class="min-w-full border border-white/10 text-white text-sm text-center">
-            <thead class="bg-white/5 border-b border-white/10">
-              <tr>
-                <th class="px-3 py-2 border">ID</th>
-                <th class="px-3 py-2 border">Student ID</th>
-                <th class="px-3 py-2 border">Year</th>
-                <th class="px-3 py-2 border">Core 1</th>
-                <th class="px-3 py-2 border">Core 2</th>
-                <th class="px-3 py-2 border">Core 3</th>
-                <th class="px-3 py-2 border">Total</th>
-                <th class="px-3 py-2 border">Percentage</th>
-                <th class="px-3 py-2 border">Actions</th>
+          <table class="w-full text-center">
+            <thead>
+              <tr class="text-white/30 text-[9px] uppercase tracking-[0.2em] border-b border-white/10">
+                <th class="pb-5 font-black">ID</th>
+                <th class="pb-5 font-black">Student ID</th>
+                <th class="pb-5 font-black">Year</th>
+                <th class="pb-5 font-black">C1</th>
+                <th class="pb-5 font-black">C2</th>
+                <th class="pb-5 font-black">C3</th>
+                <th class="pb-5 font-black text-[#FF1744]">Total</th>
+                <th class="pb-5 font-black text-[#FF1744]">%</th>
+                <th class="pb-5 font-black">Actions</th>
               </tr>
             </thead>
-            <tbody id="marksTableBody"></tbody>
+            <tbody id="marksTableBody" class="text-[11px] divide-y divide-white/5">
+                </tbody>
           </table>
-          <p id="noMarks" class="text-center text-gray-400 mt-3 hidden">No marks found.</p>
+          <p id="noMarks" class="text-center text-white/10 mt-12 text-[10px] uppercase font-black tracking-[0.3em] hidden">No performance records found</p>
         </div>
       </div>
     </div>

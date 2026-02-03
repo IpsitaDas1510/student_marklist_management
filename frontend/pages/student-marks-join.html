@@ -1,59 +1,68 @@
- <div class="relative w-full min-h-screen p-6 bg-fixed bg-cover bg-center"
-  style="background-image: url('frontend/pages/pic.jpg');">
-  <div class="w-full min-h-screen p-6">
+<div class="relative w-full min-h-screen p-6 bg-[#0a0a0a] font-['Poppins',_sans-serif] text-white">
+  
+  <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#FF1744]/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-3xl font-bold text-white">Report Card</h1>
-      <a href="/home" data-link class="text-sm text-blue-600 underline hover:text-blue-400 transition-colors">← Back to Home</a>
+  <div class="relative z-10 max-w-7xl mx-auto">
+
+    <div class="flex items-center justify-between mb-10 mt-8 border-b border-white/10 pb-6">
+      <h1 class="text-3xl font-black text-white tracking-tighter uppercase">
+        Academic <span class="text-[#FF1744]">Report Card</span>
+      </h1>
+      <a href="/home" data-link class="text-[11px] font-bold text-white hover:text-[#FF1744] transition-colors no-underline uppercase tracking-[0.2em]">
+        ← Back to Home
+      </a>
     </div>
 
-    <div class="bg-black/50 p-5 rounded-xl shadow-xl border border-white/10">
-      <h2 class="font-semibold mb-4 text-lg text-white">Student Marks Summary</h2>
-
-      <div class="flex flex-col md:flex-row gap-4 mb-6 items-end">
-        <div class="flex-1 w-full">
-          <input type="text" id="searchInput" placeholder="Search by name, email, or ID..." 
-                 class="w-full bg-white/10 border border-white/20 text-white placeholder-white/50 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+    <div class="bg-[#111111] p-8 rounded-xl border border-white/10 shadow-2xl">
+      
+      <div class="flex flex-col lg:flex-row justify-between items-center mb-10 gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-[3px] h-4 bg-[#FF1744]"></div>
+          <h2 class="text-xs font-black text-white uppercase tracking-[0.2em]">Student Marks Summary</h2>
         </div>
-        
-        <select id="sortSelect" class="bg-gray-800 border border-white/20 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="name-asc">Student Name (A-Z)</option>
-          <option value="total-desc">Marks: High to Low</option>
-          <option value="perc-desc">Percentage: High to Low</option>
-          <option value="id-asc">ID: Low to High</option>
-        </select>
 
-        <div class="flex gap-2">
-          <button id="exportCSV" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition font-medium">CSV</button>
-          <button id="exportPDF" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded transition font-medium">PDF</button>
+        <div class="flex flex-wrap gap-3 w-full lg:w-auto justify-end">
+          <input type="text" id="searchInput" placeholder="Search records..." 
+                 class="flex-1 lg:w-64 bg-black border border-white/10 rounded-full py-2 px-5 text-xs focus:border-[#FF1744] outline-none transition-all text-white placeholder:text-white/20">
+          
+          <select id="sortSelect" class="bg-black border border-white/10 text-white text-[10px] font-bold uppercase rounded-full px-4 py-2 outline-none focus:border-[#FF1744]">
+            <option value="name-asc">A-Z Name</option>
+            <option value="total-desc">Highest Marks</option>
+            <option value="perc-desc">Highest %</option>
+            <option value="id-asc">Lowest ID</option>
+          </select>
+
+          <div class="flex gap-2">
+            <button id="exportCSV" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all">CSV</button>
+            <button id="exportPDF" class="bg-[#FF1744] hover:bg-[#d50000] text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg shadow-[#FF1744]/20">PDF</button>
+          </div>
         </div>
       </div>
 
-      <div id="loading" class="text-center py-4 hidden">
-        <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+      <div id="loading" class="text-center py-10 hidden">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF1744] mx-auto"></div>
       </div>
 
-      <div id="reportContainer" class="overflow-x-auto">
-        <table class="min-w-full border border-white/20 text-white">
-          <thead class="bg-white/10 border-b border-white/20 text-sm">
-            <tr>
-              <th class="px-3 py-2 border border-white/20">ID</th>
-              <th class="px-3 py-2 border border-white/20 text-left">Student</th>
-              <th class="px-3 py-2 border border-white/20 text-left">Email</th>
-              <th class="px-3 py-2 border border-white/20">Course</th>
-              <th class="px-3 py-2 border border-white/20">Year</th>
-              <th class="px-3 py-2 border border-white/20">C1</th>
-              <th class="px-3 py-2 border border-white/20">C2</th>
-              <th class="px-3 py-2 border border-white/20">C3</th>
-              <th class="px-3 py-2 border border-white/20">Total</th>
-              <th class="px-3 py-2 border border-white/20">%</th>
+      <div id="reportContainer" class="overflow-x-auto rounded-lg border border-white/10">
+        <table class="w-full text-center border-hidden">
+          <thead>
+            <tr class="text-white/30 text-[9px] uppercase tracking-[0.2em] bg-white/[0.02]">
+              <th class="py-5 font-black px-4 border border-white/10">ID</th>
+              <th class="py-5 font-black px-4 border border-white/10">Student</th>
+              <th class="py-5 font-black px-4 border border-white/10">Email</th>
+              <th class="py-5 font-black px-4 border border-white/10">Course</th>
+              <th class="py-5 font-black px-4 border border-white/10">Year</th>
+              <th class="py-5 font-black px-4 border border-white/10">C1</th>
+              <th class="py-5 font-black px-4 border border-white/10">C2</th>
+              <th class="py-5 font-black px-4 border border-white/10">C3</th>
+              <th class="py-5 font-black px-4 border border-white/10 text-[#FF1744] bg-[#FF1744]/5">Total</th>
+              <th class="py-5 font-black px-4 border border-white/10 text-[#FF1744] bg-[#FF1744]/5">%</th>
             </tr>
           </thead>
-          <tbody id="reportBody">
-            </tbody>
+          <tbody id="reportBody" class="text-[11px] text-white/90"></tbody>
         </table>
         
-        <p id="noRows" class="text-center text-gray-400 mt-3 hidden">No records found.</p>
+        <p id="noRows" class="text-center text-white/10 py-12 text-[10px] uppercase font-black tracking-[0.3em] hidden">No records found.</p>
       </div>
     </div>
   </div>

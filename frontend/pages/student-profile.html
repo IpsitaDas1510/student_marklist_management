@@ -1,99 +1,115 @@
 <script src="/frontend/assets/js/controllers/studentProfileController.js" type="module"></script>
 
-<div class="relative w-full min-h-screen p-6 bg-fixed bg-cover bg-center"
+<div class="relative w-full min-h-screen p-6 bg-fixed bg-cover bg-center font-['Poppins',_sans-serif]"
     style="background-image: url('frontend/pages/bg.jpg');">
 
-    <div class="max-w-4xl mx-auto">
-        <div class="flex items-center justify-between mb-8">
-            <h1 class="text-3xl font-bold text-white">Student Detailed Profile</h1>
-            <a href="/student-marks-join" data-link class="text-sm text-blue-400 hover:underline">← Back to Report
-                Card</a>
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-[2px]"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto">
+        
+        <div class="flex items-center justify-between mb-10 mt-4">
+            <h1 class="text-3xl font-black text-white tracking-tighter uppercase">
+                Student <span class="text-[#FF1744]">Profile</span>
+            </h1>
+            <a href="/student-marks-join" data-link class="text-[11px] font-bold text-white/60 hover:text-[#FF1744] transition-colors no-underline uppercase tracking-[0.2em]">
+                ← Back to Report Card
+            </a>
         </div>
 
-        <div id="profileLoading" class="text-center py-10">
-            <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500 mx-auto"></div>
+        <div id="profileLoading" class="text-center py-20">
+            <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-[#FF1744] mx-auto"></div>
+            <p class="text-[10px] uppercase tracking-[0.3em] text-white/30 mt-4">Fetching Records...</p>
         </div>
 
-        <div id="profileContent"
-            class="hidden bg-black/60 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-2xl text-white">
+        <div id="profileContent" class="hidden animate-in fade-in zoom-in duration-300">
+            
+            <div class="bg-[#111111]/90 backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-2xl text-white">
 
-            <div class="flex justify-end gap-3 mb-6">
-                <button id="exportProfileCSV"
-                    class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 shadow-lg">
-                    <i class="fas fa-file-csv"></i> Export CSV
-                </button>
-                <button id="exportProfilePDF"
-                    class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2 shadow-lg">
-                    <i class="fas fa-file-pdf"></i> Download PDF
-                </button>
-            </div>
+                <div class="flex justify-end gap-3 mb-8">
+                    <button id="exportProfileCSV"
+                        class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all">
+                        <i class="fas fa-file-csv mr-2"></i> CSV
+                    </button>
+                    <button id="exportProfilePDF"
+                        class="bg-[#FF1744] hover:bg-[#d50000] text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-lg shadow-[#FF1744]/20">
+                        <i class="fas fa-file-pdf mr-2"></i> Download PDF
+                    </button>
+                </div>
 
-            <div class="flex flex-col md:flex-row justify-between border-b border-white/10 pb-6 mb-6">
-                <div>
-                    <h2 id="profName" class="text-4xl font-extrabold text-blue-400">---</h2>
-                    <p id="profEmail" class="text-gray-400 mt-1">---</p>
-                </div>
-                <div class="text-right mt-4 md:mt-0">
-                    <p class="text-sm text-gray-400 uppercase tracking-widest">Student ID</p>
-                    <p id="profId" class="text-2xl font-mono">#000</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white/5 p-4 rounded-lg">
-                    <p class="text-xs text-blue-300 uppercase font-bold">Course</p>
-                    <p id="profCourse" class="text-xl font-semibold">---</p>
-                </div>
-                <div class="bg-white/5 p-4 rounded-lg">
-                    <p class="text-xs text-blue-300 uppercase font-bold">Academic Year</p>
-                    <p id="profYear" class="text-xl font-semibold">---</p>
-                </div>
-                <!-- <div class="bg-white/5 p-4 rounded-lg">
-                    <p class="text-xs text-blue-300 uppercase font-bold">Overall Result</p>
-                    <p id="profStatus" class="text-xl font-semibold">---</p>
-                </div> -->
-            </div>
-
-            <div class="mt-8">
-                <h3 class="text-xl font-bold mb-4 border-l-4 border-blue-500 pl-3">Subject Breakdown</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="bg-white/5 p-6 rounded-xl text-center border border-white/5">
-                        <p class="text-gray-400 mb-1">Core 1</p>
-                        <p id="profC1" class="text-3xl font-bold">0</p>
+                <div class="flex flex-col md:flex-row justify-between border-b border-white/10 pb-8 mb-8">
+                    <div>
+                        <h2 id="profName" class="text-5xl font-black text-white tracking-tighter uppercase mb-2">---</h2>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-[#FF1744] animate-pulse"></div>
+                            <p id="profEmail" class="text-sm text-white/40 font-medium">---</p>
+                        </div>
                     </div>
-                    <div class="bg-white/5 p-6 rounded-xl text-center border border-white/5">
-                        <p class="text-gray-400 mb-1">Core 2</p>
-                        <p id="profC2" class="text-3xl font-bold">0</p>
-                    </div>
-                    <div class="bg-white/5 p-6 rounded-xl text-center border border-white/5">
-                        <p class="text-gray-400 mb-1">Core 3</p>
-                        <p id="profC3" class="text-3xl font-bold">0</p>
+                    <div class="text-right mt-6 md:mt-0">
+                        <p class="text-[10px] text-white/30 uppercase font-black tracking-[0.3em] mb-1">Student ID</p>
+                        <p id="profId" class="text-3xl font-mono text-[#FF1744]">#000</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="mt-8 flex justify-between items-center bg-blue-600/20 p-6 rounded-xl border border-blue-500/30">
-                <div>
-                    <p class="text-sm uppercase text-blue-300">Total Marks Scored</p>
-                    <p id="profTotal" class="text-4xl font-black">0</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                    <div class="bg-black/40 p-5 rounded-xl border border-white/5">
+                        <p class="text-[9px] text-[#FF1744] uppercase font-black tracking-widest mb-1">Assigned Course</p>
+                        <p id="profCourse" class="text-xl font-bold text-white/90">---</p>
+                    </div>
+                    <div class="bg-black/40 p-5 rounded-xl border border-white/5">
+                        <p class="text-[9px] text-[#FF1744] uppercase font-black tracking-widest mb-1">Academic Batch</p>
+                        <p id="profYear" class="text-xl font-bold text-white/90">---</p>
+                    </div>
                 </div>
-                <div class="text-right">
-                    <p class="text-sm uppercase text-blue-300">Percentage</p>
-                    <p id="profPerc" class="text-4xl font-black text-blue-400">0%</p>
+
+                <div class="mb-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-[3px] h-4 bg-[#FF1744]"></div>
+                        <h3 class="text-xs font-black text-white uppercase tracking-[0.2em]">Academic Breakdown</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-black/40 p-6 rounded-xl text-center border border-white/5 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-white/5 group-hover:bg-[#FF1744] transition-colors"></div>
+                            <p class="text-[10px] text-white/30 uppercase font-bold mb-2">Core Subject 1</p>
+                            <p id="profC1" class="text-4xl font-black text-white">0</p>
+                        </div>
+                        <div class="bg-black/40 p-6 rounded-xl text-center border border-white/5 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-white/5 group-hover:bg-[#FF1744] transition-colors"></div>
+                            <p class="text-[10px] text-white/30 uppercase font-bold mb-2">Core Subject 2</p>
+                            <p id="profC2" class="text-4xl font-black text-white">0</p>
+                        </div>
+                        <div class="bg-black/40 p-6 rounded-xl text-center border border-white/5 relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-white/5 group-hover:bg-[#FF1744] transition-colors"></div>
+                            <p class="text-[10px] text-white/30 uppercase font-bold mb-2">Core Subject 3</p>
+                            <p id="profC3" class="text-4xl font-black text-white">0</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-white/10 text-center">
-                <a href="/student-marks-join" data-link
-                    class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors group">
-                    <span class="transform group-hover:-translate-x-1 transition-transform">←</span>
-                    Return to Report Card List
-                </a>
+
+                <div class="flex justify-between items-center bg-[#FF1744]/10 p-8 rounded-2xl border border-[#FF1744]/20 ring-1 ring-[#FF1744]/10">
+                    <div>
+                        <p class="text-[10px] uppercase font-black text-[#FF1744] tracking-widest mb-1">Total Score</p>
+                        <p id="profTotal" class="text-5xl font-black text-white tracking-tighter">0</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] uppercase font-black text-[#FF1744] tracking-widest mb-1">Performance</p>
+                        <p id="profPerc" class="text-5xl font-black text-white tracking-tighter">0%</p>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-8 border-t border-white/10 text-center">
+                    <a href="/student-marks-join" data-link
+                        class="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-white/40 hover:text-[#FF1744] transition-all">
+                        <span>← Return to Database</span>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div id="errorState" class="hidden text-center py-20">
-            <h2 class="text-2xl text-red-400 font-bold">Student not found!</h2>
-            <a href="/student-marks-join" data-link class="text-blue-400 underline mt-4 block">Return to list</a>
+        <div id="errorState" class="hidden text-center py-32 bg-[#111111]/90 rounded-2xl border border-white/10">
+            <h2 class="text-xl text-[#FF1744] font-black uppercase tracking-widest">Student Profile Not Found</h2>
+            <p class="text-white/30 text-xs mt-2">The requested ID does not exist in our current registry.</p>
+            <a href="/student-marks-join" data-link class="inline-block bg-white/10 text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest mt-8 hover:bg-[#FF1744] transition-all">Go Back</a>
         </div>
     </div>
 </div>
