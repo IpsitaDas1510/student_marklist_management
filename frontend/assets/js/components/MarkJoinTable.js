@@ -141,73 +141,129 @@ export function initReportSearchSort() {
 
 /**
  * CSV Export
+ * Downloads student report data as a CSV file
  */
 export function downloadCSV() {
+  // If there is no data, do nothing
   if (!filteredData.length) return;
 
+  // CSV header row
   const headers =
     'ID,Student,Email,Course,Year,Core1,Core2,Core3,Total,Percentage';
 
-  const rows = filteredData.map((r) =>
-    [
+  // Convert each student record into a CSV row
+  const rows = filteredData.map((r) => {
+    // Safely extract marks (default to 0 if missing)
+    const c1 = r.core1 ?? 0;
+    const c2 = r.core2 ?? 0;
+    const c3 = r.core3 ?? 0;
+
+    // Calculate total marks if not already present
+    const total = r.total ?? (c1 + c2 + c3);
+
+    // Maximum possible marks (3 subjects × 100)
+    const maxMarks = 300;
+
+    // Calculate percentage
+    const percentage = ((total / maxMarks) * 100).toFixed(2);
+
+    // Return CSV row as a comma-separated string
+    return [
       r.student_id,
       `"${r.student_name || 'N/A'}"`,
       `"${r.student_email || ''}"`,
       `"${r.student_course || ''}"`,
       r.exam_year ?? r.student_year ?? r.year ?? '',
-      r.core1 ?? 0,
-      r.core2 ?? 0,
-      r.core3 ?? 0,
-      r.total ?? 0,
-      `${r.percentage || 0}%`
-    ].join(',')
-  );
+      c1,
+      c2,
+      c3,
+      total,
+      `${percentage}%`
+    ].join(',');
+  });
 
+  // Create CSV file as a Blob
   const blob = new Blob([[headers, ...rows].join('\n')], {
     type: 'text/csv'
   });
 
+  // Create a temporary download link
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'Student_Report.csv';
+
+  // Trigger download
   a.click();
 }
 
 /**
  * PDF Export
+ * Downloads student report data as a formatted PDF file
  */
 export function downloadPDF() {
+  // Get jsPDF constructor safely
   const Constructor = window.jspdf?.jsPDF || window.jsPDF;
+
+  // Stop if library is not loaded or no data is available
   if (!Constructor || !filteredData.length) {
     alert('PDF library not ready or no data.');
     return;
   }
 
+  // Create a new PDF document in landscape mode
   const doc = new Constructor('landscape');
 
+  // Set title font size
   doc.setFontSize(18);
+
+  // Add title text
   doc.text('Student Progress Report Card', 14, 15);
 
-  const rows = filteredData.map((r) => [
-    r.student_id,
-    r.student_name || 'N/A',
-    r.student_course || '',
-    r.exam_year ?? r.student_year ?? r.year ?? '',
-    r.core1 ?? 0,
-    r.core2 ?? 0,
-    r.core3 ?? 0,
-    r.total ?? 0,
-    `${r.percentage || 0}%`
-  ]);
+  // Prepare table rows
+  const rows = filteredData.map((r) => {
+    // Safely extract marks
+    const c1 = r.core1 ?? 0;
+    const c2 = r.core2 ?? 0;
+    const c3 = r.core3 ?? 0;
 
+    // Calculate total marks
+    const total = r.total ?? (c1 + c2 + c3);
+
+    // Maximum marks
+    const maxMarks = 300;
+
+    // Calculate percentage
+    const percentage = ((total / maxMarks) * 100).toFixed(2);
+
+    // Return row data for PDF table
+    return [
+      r.student_id,
+      r.student_name || 'N/A',
+      r.student_course || '',
+      r.exam_year ?? r.student_year ?? r.year ?? '',
+      c1,
+      c2,
+      c3,
+      total,
+      `${percentage}%`
+    ];
+  });
+
+  // Generate table using autoTable plugin
   doc.autoTable({
     head: [['ID', 'Student', 'Course', 'Year', 'C1', 'C2', 'C3', 'Total', '%']],
     body: rows,
     startY: 28,
     theme: 'grid',
-    headStyles: { fillColor: [255, 255, 255], textColor: [0, 0, 0] },
-    styles: { textColor: [0, 0, 0] }
+    headStyles: {
+      fillColor: [255, 255, 255],
+      textColor: [0, 0, 0]
+    },
+    styles: {
+      textColor: [0, 0, 0]
+    }
   });
 
+  // Save the PDF with a timestamped filename
   doc.save(`Report_Card_${Date.now()}.pdf`);
 }
